@@ -76,4 +76,103 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shopNameRequired => 'Please enter your shop name.';
+
+  @override
+  String get inventoryAddItem => 'Add item';
+
+  @override
+  String get inventoryEditItem => 'Edit item';
+
+  @override
+  String get inventorySearchHint => 'Search items';
+
+  @override
+  String get inventoryFilterCategory => 'Category';
+
+  @override
+  String get inventoryFilterColor => 'Colour';
+
+  @override
+  String get inventoryFilterAll => 'All';
+
+  @override
+  String get inventoryFieldName => 'Name';
+
+  @override
+  String get inventoryFieldCategory => 'Category';
+
+  @override
+  String get inventoryFieldPattern => 'Pattern (optional)';
+
+  @override
+  String get inventoryFieldPrice => 'Selling price';
+
+  @override
+  String get inventoryFieldCostPrice => 'Cost price';
+
+  @override
+  String get inventoryFieldSizes => 'Sizes';
+
+  @override
+  String get inventoryFieldColors => 'Colours';
+
+  @override
+  String get inventoryFieldQuantity => 'Qty';
+
+  @override
+  String get inventoryFieldImage => 'Photo';
+
+  @override
+  String get inventoryChooseFromCamera => 'Camera';
+
+  @override
+  String get inventoryChooseFromGallery => 'Gallery';
+
+  @override
+  String get inventorySave => 'Save';
+
+  @override
+  String get inventoryDelete => 'Delete';
+
+  @override
+  String get inventoryDeleteConfirmTitle => 'Delete item?';
+
+  @override
+  String get inventoryDeleteConfirmBody => 'This cannot be undone.';
+
+  @override
+  String get inventoryLowStockChip => 'Low stock';
+
+  @override
+  String get inventoryNoResults => 'No items match this filter.';
+
+  @override
+  String get inventoryLoadMore => 'Load more';
+
+  @override
+  String get inventoryValidationNameRequired => 'Name is required.';
+
+  @override
+  String get inventoryValidationPriceInvalid => 'Enter a valid price.';
+
+  @override
+  String get inventoryValidationCostPriceInvalid => 'Enter a valid cost price.';
+
+  @override
+  String get inventoryValidationNeedAtLeastOneSize => 'Add at least one size.';
+
+  @override
+  String get inventoryValidationImageRequired => 'Add a photo.';
+
+  @override
+  String get inventoryUploadingImage => 'Uploading photo…';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get commonRetry => 'Retry';
+
+  @override
+  String get commonSaving => 'Saving…';
 }

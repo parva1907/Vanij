@@ -76,4 +76,104 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get shopNameRequired => 'कृपया दुकान का नाम दर्ज करें।';
+
+  @override
+  String get inventoryAddItem => 'सामान जोड़ें';
+
+  @override
+  String get inventoryEditItem => 'सामान बदलें';
+
+  @override
+  String get inventorySearchHint => 'सामान खोजें';
+
+  @override
+  String get inventoryFilterCategory => 'श्रेणी';
+
+  @override
+  String get inventoryFilterColor => 'रंग';
+
+  @override
+  String get inventoryFilterAll => 'सभी';
+
+  @override
+  String get inventoryFieldName => 'नाम';
+
+  @override
+  String get inventoryFieldCategory => 'श्रेणी';
+
+  @override
+  String get inventoryFieldPattern => 'पैटर्न (वैकल्पिक)';
+
+  @override
+  String get inventoryFieldPrice => 'बिक्री मूल्य';
+
+  @override
+  String get inventoryFieldCostPrice => 'लागत मूल्य';
+
+  @override
+  String get inventoryFieldSizes => 'साइज़';
+
+  @override
+  String get inventoryFieldColors => 'रंग';
+
+  @override
+  String get inventoryFieldQuantity => 'संख्या';
+
+  @override
+  String get inventoryFieldImage => 'फ़ोटो';
+
+  @override
+  String get inventoryChooseFromCamera => 'कैमरा';
+
+  @override
+  String get inventoryChooseFromGallery => 'गैलरी';
+
+  @override
+  String get inventorySave => 'सहेजें';
+
+  @override
+  String get inventoryDelete => 'हटाएँ';
+
+  @override
+  String get inventoryDeleteConfirmTitle => 'सामान हटाएँ?';
+
+  @override
+  String get inventoryDeleteConfirmBody => 'यह वापस नहीं होगा।';
+
+  @override
+  String get inventoryLowStockChip => 'स्टॉक कम';
+
+  @override
+  String get inventoryNoResults => 'इस फ़िल्टर से कोई सामान नहीं मिला।';
+
+  @override
+  String get inventoryLoadMore => 'और दिखाएँ';
+
+  @override
+  String get inventoryValidationNameRequired => 'नाम ज़रूरी है।';
+
+  @override
+  String get inventoryValidationPriceInvalid => 'सही बिक्री मूल्य दर्ज करें।';
+
+  @override
+  String get inventoryValidationCostPriceInvalid => 'सही लागत मूल्य दर्ज करें।';
+
+  @override
+  String get inventoryValidationNeedAtLeastOneSize =>
+      'कम से कम एक साइज़ जोड़ें।';
+
+  @override
+  String get inventoryValidationImageRequired => 'फ़ोटो जोड़ें।';
+
+  @override
+  String get inventoryUploadingImage => 'फ़ोटो अपलोड हो रही है…';
+
+  @override
+  String get commonCancel => 'रद्द करें';
+
+  @override
+  String get commonRetry => 'फिर कोशिश करें';
+
+  @override
+  String get commonSaving => 'सहेज रहे हैं…';
 }

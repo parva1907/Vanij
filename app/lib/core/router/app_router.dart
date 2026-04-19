@@ -7,6 +7,7 @@ import '../../features/auth/presentation/sign_up_screen.dart';
 import '../../features/auth/providers/auth_providers.dart';
 import '../../features/crm/presentation/customers_screen.dart';
 import '../../features/finance/presentation/finance_screen.dart';
+import '../../features/inventory/presentation/inventory_form_screen.dart';
 import '../../features/inventory/presentation/inventory_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/shell/presentation/main_shell.dart';
@@ -19,6 +20,7 @@ class VanijRoutes {
   static const signIn = '/sign-in';
   static const signUp = '/sign-up';
   static const inventory = '/inventory';
+  static const inventoryNew = '/inventory/new';
   static const customers = '/customers';
   static const finance = '/finance';
   static const settings = '/settings';
@@ -65,6 +67,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: VanijRoutes.inventory,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: InventoryScreen()),
+            routes: [
+              GoRoute(
+                path: 'new',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) => const InventoryFormScreen(),
+              ),
+              GoRoute(
+                path: ':id',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) =>
+                    InventoryFormScreen(itemId: state.pathParameters['id']),
+              ),
+            ],
           ),
           GoRoute(
             path: VanijRoutes.customers,
