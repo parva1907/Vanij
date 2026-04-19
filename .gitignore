@@ -1,0 +1,75 @@
+# ============================================================
+# Vanij monorepo — .gitignore
+# ============================================================
+
+# Secrets (must never be committed)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+service_account.json
+service-account*.json
+gcp-*.json
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ---------- Flutter / Dart ----------
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/.pub-cache/
+app/.pub/
+app/build/
+app/coverage/
+app/pubspec.lock
+app/.metadata
+
+# Android
+app/android/.gradle/
+app/android/local.properties
+app/android/**/build/
+app/android/**/gradle-wrapper.jar
+app/android/key.properties
+app/android/app/release/
+app/android/app/debug/
+app/android/app/profile/
+app/android/app/upload-keystore.jks
+app/android/app/*.jks
+
+# Generated files
+app/lib/**/*.g.dart
+app/lib/**/*.freezed.dart
+app/lib/firebase_options.dart
+
+# ---------- Node / Cloud Functions ----------
+functions/node_modules/
+functions/lib/
+functions/.eslintcache
+
+# ---------- Python / AI backend ----------
+ai/__pycache__/
+ai/**/__pycache__/
+ai/.venv/
+ai/venv/
+ai/.pytest_cache/
+ai/.ruff_cache/
+ai/*.egg-info/
+ai/build/
+ai/dist/
+
+# ---------- Firebase CLI ----------
+.firebaserc.local

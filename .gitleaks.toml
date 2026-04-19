@@ -1,0 +1,17 @@
+# Gitleaks config for Vanij. Extends the default ruleset.
+#
+# We allow-list the committed `google-services.json` because its `api_key`
+# is the public-facing Firebase Android API key — per Firebase docs this
+# value is not a secret. True secrets (Claude, Razorpay, service accounts)
+# are NEVER committed.
+title = "Vanij gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Public Firebase Android API key in google-services.json"
+paths = [
+    '''app/android/app/google-services\.json''',
+    '''app/lib/firebase_options\.dart''',
+]
