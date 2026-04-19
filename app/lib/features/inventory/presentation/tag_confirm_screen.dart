@@ -339,7 +339,13 @@ class _ColorsSection extends StatelessWidget {
   }
 }
 
-class _PatternSection extends StatelessWidget {
+/// Stateful wrapper so the [TextEditingController] survives parent
+/// rebuilds (every chip toggle or dropdown change rebuilds the whole
+/// screen). If we allocated the controller in `build`, two things would
+/// break: the controller would leak on every rebuild, and the cursor
+/// would reset to position 0 mid-typing whenever a sibling widget
+/// changed.
+class _PatternSection extends StatefulWidget {
   const _PatternSection({
     required this.label,
     required this.selected,
@@ -353,16 +359,50 @@ class _PatternSection extends StatelessWidget {
   final ValueChanged<String?> onChanged;
 
   @override
+  State<_PatternSection> createState() => _PatternSectionState();
+}
+
+class _PatternSectionState extends State<_PatternSection> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.selected ?? '');
+  }
+
+  @override
+  void didUpdateWidget(covariant _PatternSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Only sync when the *external* value diverges from what the user
+    // typed (e.g. parent reset the draft). Otherwise every keystroke
+    // would snap the cursor back to position 0.
+    final external = widget.selected ?? '';
+    if (external != _controller.text) {
+      _controller.value = TextEditingValue(
+        text: external,
+        selection: TextSelection.collapsed(offset: external.length),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController(text: selected ?? '');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _SectionLabel(label: label, suggested: suggested),
+        _SectionLabel(label: widget.label, suggested: widget.suggested),
         const SizedBox(height: 8),
         TextField(
-          controller: controller,
-          onChanged: (v) => onChanged(v.trim().isEmpty ? null : v.trim()),
+          controller: _controller,
+          onChanged: (v) =>
+              widget.onChanged(v.trim().isEmpty ? null : v.trim()),
           decoration: const InputDecoration(border: OutlineInputBorder()),
         ),
       ],

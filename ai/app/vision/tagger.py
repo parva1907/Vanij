@@ -82,18 +82,21 @@ def load_tagger() -> VisionTagger:
 # ---------------------------------------------------------------------------
 
 
-# Coarse taxonomy shared with the Flutter client. Keep in sync with
-# ``app/lib/features/inventory/providers/inventory_providers.dart``'s
-# ``kInventoryCategories`` list — changes here must be mirrored there.
+# Coarse taxonomy shared with the Flutter client. Must match
+# ``kInventoryCategories`` in
+# ``app/lib/features/inventory/presentation/widgets/filter_chips_bar.dart``
+# exactly — if the tagger returns a label the client does not know, the
+# TagConfirmScreen silently falls back to the first category and the
+# merchant sees the wrong suggestion pre-filled.
 _CATEGORIES: tuple[str, ...] = (
     "Saree",
     "Kurta",
     "Lehenga",
+    "Salwar",
     "Shirt",
-    "T-Shirt",
-    "Dress",
-    "Trousers",
+    "Trouser",
     "Dupatta",
+    "Accessory",
 )
 
 # Fashion-oriented colour palette. Confidences are intentionally modest

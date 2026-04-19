@@ -33,6 +33,37 @@ def test_heuristic_tagger_rejects_unsupported_mime():
         tagger.tag(b"not-an-image", "application/octet-stream")
 
 
+def test_heuristic_tagger_categories_match_flutter_client():
+    """Every category the tagger can emit must exist in the Flutter
+    ``kInventoryCategories`` list — otherwise the TagConfirmScreen
+    falls back to the first category silently and the merchant sees
+    the wrong suggestion pre-filled.
+    """
+    import re
+    from pathlib import Path
+
+    from app.vision.tagger import _CATEGORIES  # type: ignore[attr-defined]
+
+    chips_path = (
+        Path(__file__).resolve().parents[2]
+        / "app"
+        / "lib"
+        / "features"
+        / "inventory"
+        / "presentation"
+        / "widgets"
+        / "filter_chips_bar.dart"
+    )
+    src = chips_path.read_text()
+    match = re.search(r"kInventoryCategories\s*=\s*\[([^\]]+)\]", src)
+    assert match, "could not locate kInventoryCategories in Flutter source"
+    flutter_categories = tuple(re.findall(r"'([^']+)'", match.group(1)))
+    assert set(_CATEGORIES) <= set(flutter_categories), (
+        f"Python tagger categories {set(_CATEGORIES) - set(flutter_categories)!r} "
+        f"are not present in Flutter kInventoryCategories {flutter_categories!r}"
+    )
+
+
 def test_heuristic_tagger_shape_matches_schema():
     tagger = HeuristicVisionTagger()
     resp = tagger.tag(b"\xff\xd8\xff\xe0" + (b"jpeg-ish" * 32), "image/jpeg")
