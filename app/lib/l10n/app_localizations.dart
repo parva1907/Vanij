@@ -235,6 +235,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter your shop name.'**
   String get shopNameRequired;
+
+  /// No description provided for @inventoryAddItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get inventoryAddItem;
+
+  /// No description provided for @inventoryEditItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit item'**
+  String get inventoryEditItem;
+
+  /// No description provided for @inventorySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search items'**
+  String get inventorySearchHint;
+
+  /// No description provided for @inventoryFilterCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get inventoryFilterCategory;
+
+  /// No description provided for @inventoryFilterColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour'**
+  String get inventoryFilterColor;
+
+  /// No description provided for @inventoryFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get inventoryFilterAll;
+
+  /// No description provided for @inventoryFieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get inventoryFieldName;
+
+  /// No description provided for @inventoryFieldCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get inventoryFieldCategory;
+
+  /// No description provided for @inventoryFieldPattern.
+  ///
+  /// In en, this message translates to:
+  /// **'Pattern (optional)'**
+  String get inventoryFieldPattern;
+
+  /// No description provided for @inventoryFieldPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Selling price'**
+  String get inventoryFieldPrice;
+
+  /// No description provided for @inventoryFieldCostPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost price'**
+  String get inventoryFieldCostPrice;
+
+  /// No description provided for @inventoryFieldSizes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sizes'**
+  String get inventoryFieldSizes;
+
+  /// No description provided for @inventoryFieldColors.
+  ///
+  /// In en, this message translates to:
+  /// **'Colours'**
+  String get inventoryFieldColors;
+
+  /// No description provided for @inventoryFieldQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty'**
+  String get inventoryFieldQuantity;
+
+  /// No description provided for @inventoryFieldImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get inventoryFieldImage;
+
+  /// No description provided for @inventoryChooseFromCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get inventoryChooseFromCamera;
+
+  /// No description provided for @inventoryChooseFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get inventoryChooseFromGallery;
+
+  /// No description provided for @inventorySave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get inventorySave;
+
+  /// No description provided for @inventoryDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get inventoryDelete;
+
+  /// No description provided for @inventoryDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete item?'**
+  String get inventoryDeleteConfirmTitle;
+
+  /// No description provided for @inventoryDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone.'**
+  String get inventoryDeleteConfirmBody;
+
+  /// No description provided for @inventoryLowStockChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Low stock'**
+  String get inventoryLowStockChip;
+
+  /// No description provided for @inventoryNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No items match this filter.'**
+  String get inventoryNoResults;
+
+  /// No description provided for @inventoryLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get inventoryLoadMore;
+
+  /// No description provided for @inventoryValidationNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required.'**
+  String get inventoryValidationNameRequired;
+
+  /// No description provided for @inventoryValidationPriceInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid price.'**
+  String get inventoryValidationPriceInvalid;
+
+  /// No description provided for @inventoryValidationCostPriceInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid cost price.'**
+  String get inventoryValidationCostPriceInvalid;
+
+  /// No description provided for @inventoryValidationNeedAtLeastOneSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one size.'**
+  String get inventoryValidationNeedAtLeastOneSize;
+
+  /// No description provided for @inventoryValidationImageRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo.'**
+  String get inventoryValidationImageRequired;
+
+  /// No description provided for @inventoryUploadingImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading photo…'**
+  String get inventoryUploadingImage;
+
+  /// No description provided for @commonCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get commonCancel;
+
+  /// No description provided for @commonRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get commonRetry;
+
+  /// No description provided for @commonSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get commonSaving;
 }
 
 class _AppLocalizationsDelegate

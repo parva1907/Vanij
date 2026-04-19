@@ -53,7 +53,11 @@ service cloud.firestore {
                               && request.resource.data.price >= 0
                               && request.resource.data.costPrice is number
                               && request.resource.data.costPrice >= 0
-                              && request.resource.data.quantity is map;
+                              && request.resource.data.quantity is map
+                              && request.resource.data.lowStock is bool
+                              && request.resource.data.category is string
+                              && request.resource.data.color is list
+                              && request.resource.data.size is list;
         allow delete: if isOwner(merchantId);
       }
 
