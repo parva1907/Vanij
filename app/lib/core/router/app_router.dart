@@ -8,7 +8,9 @@ import '../../features/auth/presentation/sign_in_screen.dart';
 import '../../features/auth/presentation/sign_up_screen.dart';
 import '../../features/auth/providers/auth_providers.dart';
 import '../../features/crm/presentation/customers_screen.dart';
+import '../../features/finance/presentation/add_ledger_entry_screen.dart';
 import '../../features/finance/presentation/finance_screen.dart';
+import '../../features/finance/presentation/ledger_list_screen.dart';
 import '../../features/inventory/presentation/inventory_form_screen.dart';
 import '../../features/inventory/presentation/inventory_screen.dart';
 import '../../features/inventory/presentation/tag_confirm_screen.dart';
@@ -27,6 +29,8 @@ class VanijRoutes {
   static const inventoryTagConfirm = '/inventory/tag-confirm';
   static const customers = '/customers';
   static const finance = '/finance';
+  static const financeNew = '/finance/new';
+  static const financeLedger = '/finance/ledger';
   static const settings = '/settings';
 }
 
@@ -113,6 +117,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: VanijRoutes.finance,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: FinanceScreen()),
+            routes: [
+              GoRoute(
+                path: 'new',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) => const AddLedgerEntryScreen(),
+              ),
+              GoRoute(
+                path: 'ledger',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) => const LedgerListScreen(),
+              ),
+            ],
           ),
           GoRoute(
             path: VanijRoutes.settings,

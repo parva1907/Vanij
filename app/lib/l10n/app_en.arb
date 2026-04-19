@@ -70,5 +70,38 @@
 
   "commonCancel": "Cancel",
   "commonRetry": "Retry",
-  "commonSaving": "Saving…"
+  "commonSaving": "Saving…",
+
+  "financeToday": "Today",
+  "financeTodayBreakdown": "Sales {sales} · Refunds {refunds} · Expenses {expenses}",
+  "@financeTodayBreakdown": {
+    "placeholders": {
+      "sales": {},
+      "refunds": {},
+      "expenses": {}
+    }
+  },
+  "financeWeekPnl": "Last 7 days P&L",
+  "financeTopItems": "Top items this week",
+  "financeTopItemsEmpty": "No linked sales this week yet.",
+  "financeAddEntry": "Add entry",
+  "financeEntrySaved": "Entry saved to ledger.",
+  "financeEntryType": "Type",
+  "financeTypeSale": "Sale",
+  "financeTypeExpense": "Expense",
+  "financeTypeRefund": "Refund",
+  "financeFieldAmount": "Amount",
+  "financeFieldDate": "Date",
+  "financeFieldNote": "Note (optional)",
+  "financeFieldItemRef": "Linked item id (optional)",
+  "financeFieldItemRefHint": "Use for sales tied to a specific SKU.",
+  "financeFieldUpiRef": "UPI reference (optional)",
+  "financeFieldUpiRefHint": "Stored encrypted on device — never in plain text.",
+  "financeValidationAmountRequired": "Amount is required.",
+  "financeValidationAmountInvalid": "Enter a valid amount.",
+  "financeLedgerTitle": "Ledger",
+  "financeViewLedger": "View ledger",
+  "financeExportCsv": "Export last 30 days",
+  "financeExportCsvSubject": "Vanij ledger export",
+  "financeFilterAll": "All"
 }

@@ -481,6 +481,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Saving…'**
   String get commonSaving;
+
+  /// No description provided for @financeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get financeToday;
+
+  /// No description provided for @financeTodayBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales {sales} · Refunds {refunds} · Expenses {expenses}'**
+  String financeTodayBreakdown(Object sales, Object refunds, Object expenses);
+
+  /// No description provided for @financeWeekPnl.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days P&L'**
+  String get financeWeekPnl;
+
+  /// No description provided for @financeTopItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Top items this week'**
+  String get financeTopItems;
+
+  /// No description provided for @financeTopItemsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No linked sales this week yet.'**
+  String get financeTopItemsEmpty;
+
+  /// No description provided for @financeAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Add entry'**
+  String get financeAddEntry;
+
+  /// No description provided for @financeEntrySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry saved to ledger.'**
+  String get financeEntrySaved;
+
+  /// No description provided for @financeEntryType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get financeEntryType;
+
+  /// No description provided for @financeTypeSale.
+  ///
+  /// In en, this message translates to:
+  /// **'Sale'**
+  String get financeTypeSale;
+
+  /// No description provided for @financeTypeExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get financeTypeExpense;
+
+  /// No description provided for @financeTypeRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get financeTypeRefund;
+
+  /// No description provided for @financeFieldAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get financeFieldAmount;
+
+  /// No description provided for @financeFieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get financeFieldDate;
+
+  /// No description provided for @financeFieldNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get financeFieldNote;
+
+  /// No description provided for @financeFieldItemRef.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked item id (optional)'**
+  String get financeFieldItemRef;
+
+  /// No description provided for @financeFieldItemRefHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use for sales tied to a specific SKU.'**
+  String get financeFieldItemRefHint;
+
+  /// No description provided for @financeFieldUpiRef.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI reference (optional)'**
+  String get financeFieldUpiRef;
+
+  /// No description provided for @financeFieldUpiRefHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored encrypted on device — never in plain text.'**
+  String get financeFieldUpiRefHint;
+
+  /// No description provided for @financeValidationAmountRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount is required.'**
+  String get financeValidationAmountRequired;
+
+  /// No description provided for @financeValidationAmountInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid amount.'**
+  String get financeValidationAmountInvalid;
+
+  /// No description provided for @financeLedgerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ledger'**
+  String get financeLedgerTitle;
+
+  /// No description provided for @financeViewLedger.
+  ///
+  /// In en, this message translates to:
+  /// **'View ledger'**
+  String get financeViewLedger;
+
+  /// No description provided for @financeExportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export last 30 days'**
+  String get financeExportCsv;
+
+  /// No description provided for @financeExportCsvSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Vanij ledger export'**
+  String get financeExportCsvSubject;
+
+  /// No description provided for @financeFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get financeFilterAll;
 }
 
 class _AppLocalizationsDelegate

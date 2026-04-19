@@ -19,3 +19,7 @@ paths = [
     '''(^|/)\.dart_tool/''',
     '''(^|/)lib/.*\.js\.map$''',
 ]
+# Literal namespaced keys used with flutter_secure_storage — not secrets.
+regexes = [
+    '''vanij\.ledger\.aes256\.v1''',
+]

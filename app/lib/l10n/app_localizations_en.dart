@@ -202,4 +202,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonSaving => 'Saving…';
+
+  @override
+  String get financeToday => 'Today';
+
+  @override
+  String financeTodayBreakdown(Object sales, Object refunds, Object expenses) {
+    return 'Sales $sales · Refunds $refunds · Expenses $expenses';
+  }
+
+  @override
+  String get financeWeekPnl => 'Last 7 days P&L';
+
+  @override
+  String get financeTopItems => 'Top items this week';
+
+  @override
+  String get financeTopItemsEmpty => 'No linked sales this week yet.';
+
+  @override
+  String get financeAddEntry => 'Add entry';
+
+  @override
+  String get financeEntrySaved => 'Entry saved to ledger.';
+
+  @override
+  String get financeEntryType => 'Type';
+
+  @override
+  String get financeTypeSale => 'Sale';
+
+  @override
+  String get financeTypeExpense => 'Expense';
+
+  @override
+  String get financeTypeRefund => 'Refund';
+
+  @override
+  String get financeFieldAmount => 'Amount';
+
+  @override
+  String get financeFieldDate => 'Date';
+
+  @override
+  String get financeFieldNote => 'Note (optional)';
+
+  @override
+  String get financeFieldItemRef => 'Linked item id (optional)';
+
+  @override
+  String get financeFieldItemRefHint => 'Use for sales tied to a specific SKU.';
+
+  @override
+  String get financeFieldUpiRef => 'UPI reference (optional)';
+
+  @override
+  String get financeFieldUpiRefHint =>
+      'Stored encrypted on device — never in plain text.';
+
+  @override
+  String get financeValidationAmountRequired => 'Amount is required.';
+
+  @override
+  String get financeValidationAmountInvalid => 'Enter a valid amount.';
+
+  @override
+  String get financeLedgerTitle => 'Ledger';
+
+  @override
+  String get financeViewLedger => 'View ledger';
+
+  @override
+  String get financeExportCsv => 'Export last 30 days';
+
+  @override
+  String get financeExportCsvSubject => 'Vanij ledger export';
+
+  @override
+  String get financeFilterAll => 'All';
 }

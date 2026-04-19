@@ -66,5 +66,38 @@
 
   "commonCancel": "रद्द करें",
   "commonRetry": "फिर कोशिश करें",
-  "commonSaving": "सहेज रहे हैं…"
+  "commonSaving": "सहेज रहे हैं…",
+
+  "financeToday": "आज",
+  "financeTodayBreakdown": "बिक्री {sales} · वापसी {refunds} · खर्च {expenses}",
+  "@financeTodayBreakdown": {
+    "placeholders": {
+      "sales": {},
+      "refunds": {},
+      "expenses": {}
+    }
+  },
+  "financeWeekPnl": "पिछले 7 दिनों का लाभ/हानि",
+  "financeTopItems": "इस हफ़्ते सबसे ज़्यादा बिके",
+  "financeTopItemsEmpty": "इस हफ़्ते अभी कोई जुड़ी हुई बिक्री नहीं।",
+  "financeAddEntry": "नया लेन-देन",
+  "financeEntrySaved": "लेन-देन खाते में सहेजा गया।",
+  "financeEntryType": "प्रकार",
+  "financeTypeSale": "बिक्री",
+  "financeTypeExpense": "खर्च",
+  "financeTypeRefund": "वापसी",
+  "financeFieldAmount": "रक़म",
+  "financeFieldDate": "तारीख़",
+  "financeFieldNote": "नोट (वैकल्पिक)",
+  "financeFieldItemRef": "जुड़ा हुआ सामान आईडी (वैकल्पिक)",
+  "financeFieldItemRefHint": "किसी विशेष सामान की बिक्री के लिए।",
+  "financeFieldUpiRef": "UPI रेफ़रेंस (वैकल्पिक)",
+  "financeFieldUpiRefHint": "डिवाइस पर एन्क्रिप्ट करके सहेजा जाता है — कभी भी प्लेन टेक्स्ट में नहीं।",
+  "financeValidationAmountRequired": "रक़म ज़रूरी है।",
+  "financeValidationAmountInvalid": "सही रक़म दर्ज करें।",
+  "financeLedgerTitle": "खाता-बही",
+  "financeViewLedger": "खाता-बही देखें",
+  "financeExportCsv": "पिछले 30 दिन CSV डाउनलोड",
+  "financeExportCsvSubject": "वणिज् खाता-बही",
+  "financeFilterAll": "सभी"
 }
