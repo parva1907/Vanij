@@ -45,6 +45,8 @@ def settings_override() -> Iterator[Any]:
         "auth_disabled": settings.auth_disabled,
         "environment": settings.environment,
         "default_rate_limit": settings.default_rate_limit,
+        "max_image_bytes": settings.max_image_bytes,
+        "vision_backend": settings.vision_backend,
     }
     yield settings
     for k, v in snapshot.items():

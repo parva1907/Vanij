@@ -13,6 +13,7 @@ import '../data/image_upload_service.dart';
 import '../data/inventory_repository.dart';
 import '../data/models/inventory_item.dart';
 import '../providers/inventory_providers.dart';
+import 'tag_confirm_screen.dart' show InventoryDraftSeed;
 import 'widgets/filter_chips_bar.dart';
 
 /// Create / edit form. Pass [itemId] = null for create.
@@ -22,8 +23,13 @@ import 'widgets/filter_chips_bar.dart';
 ///   • `inventoryMutationControllerProvider` — save / delete.
 ///   • `imageUploadServiceProvider`        — upload WebP photo.
 class InventoryFormScreen extends ConsumerStatefulWidget {
-  const InventoryFormScreen({super.key, this.itemId});
+  const InventoryFormScreen({super.key, this.itemId, this.initialSeed});
   final String? itemId;
+
+  /// Optional pre-fill — used when the merchant arrives here after
+  /// the AI tagging flow so their camera photo and the confirmed AI
+  /// tags don't need to be re-entered.
+  final InventoryDraftSeed? initialSeed;
 
   bool get isEdit => itemId != null;
 
@@ -61,6 +67,26 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
     super.initState();
     if (widget.isEdit) {
       _loadExisting();
+    } else {
+      _applySeed(widget.initialSeed);
+    }
+  }
+
+  /// Apply the post-TagConfirm pre-fill. Only runs on creation — we
+  /// never let the seed overwrite an existing Firestore document.
+  void _applySeed(InventoryDraftSeed? seed) {
+    if (seed == null) return;
+    _pickedImage = seed.imageFile;
+    if (seed.category != null && kInventoryCategories.contains(seed.category)) {
+      _category = seed.category!;
+    }
+    if (seed.pattern != null && seed.pattern!.isNotEmpty) {
+      _patternCtrl.text = seed.pattern!;
+    }
+    if (seed.colors.isNotEmpty) {
+      _colors
+        ..clear()
+        ..addAll(seed.colors);
     }
   }
 

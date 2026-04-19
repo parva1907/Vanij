@@ -168,6 +168,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get inventoryUploadingImage => 'Uploading photo…';
 
   @override
+  String get inventoryAddWithAi => 'Scan with AI';
+
+  @override
+  String get tagConfirmTitle => 'Confirm tags';
+
+  @override
+  String get tagConfirmLoading => 'Asking the AI to look at your photo…';
+
+  @override
+  String get tagConfirmHeadline => 'Review the AI suggestions';
+
+  @override
+  String get tagConfirmSubheadline =>
+      'Nothing is saved until you tap Continue. Edit anything that looks wrong.';
+
+  @override
+  String get tagConfirmContinue => 'Continue';
+
+  @override
+  String get tagConfirmSkip => 'Skip AI suggestions';
+
+  @override
+  String tagConfirmAiSuggested(String value) {
+    return 'AI: $value';
+  }
+
+  @override
   String get commonCancel => 'Cancel';
 
   @override
