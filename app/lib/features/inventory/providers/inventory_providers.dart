@@ -182,13 +182,31 @@ class InventoryMutationController extends AsyncNotifier<void> {
   @override
   Future<void> build() async {}
 
-  Future<String> save({required InventoryItem draft, String? itemId}) async {
+  /// Creates or updates an inventory item.
+  ///
+  ///  - [itemId] == null               → Firestore auto-generates an ID
+  ///                                      (kept for callers that don't
+  ///                                      care about the ID up-front).
+  ///  - [itemId] != null && [isNew]    → write at the caller-supplied
+  ///                                      ID via `doc(id).set(...)`. Safe
+  ///                                      to retry — the second attempt
+  ///                                      overwrites the first instead
+  ///                                      of creating a duplicate.
+  ///  - [itemId] != null && ![isNew]   → update the existing document.
+  Future<String> save({
+    required InventoryItem draft,
+    String? itemId,
+    bool isNew = false,
+  }) async {
     state = const AsyncLoading();
     try {
       final repo = ref.read(inventoryRepositoryProvider);
       final String id;
       if (itemId == null) {
         id = await repo.create(draft);
+      } else if (isNew) {
+        await repo.createWithId(itemId, draft);
+        id = itemId;
       } else {
         await repo.update(draft);
         id = itemId;
