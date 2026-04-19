@@ -481,6 +481,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Saving…'**
   String get commonSaving;
+
+  /// No description provided for @financeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get financeToday;
+
+  /// No description provided for @financeTodayBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales {sales} · Refunds {refunds} · Expenses {expenses}'**
+  String financeTodayBreakdown(Object sales, Object refunds, Object expenses);
+
+  /// No description provided for @financeWeekPnl.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days P&L'**
+  String get financeWeekPnl;
+
+  /// No description provided for @financeTopItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Top items this week'**
+  String get financeTopItems;
+
+  /// No description provided for @financeTopItemsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No linked sales this week yet.'**
+  String get financeTopItemsEmpty;
+
+  /// No description provided for @financeAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Add entry'**
+  String get financeAddEntry;
+
+  /// No description provided for @financeEntrySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry saved to ledger.'**
+  String get financeEntrySaved;
+
+  /// No description provided for @financeEntryType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get financeEntryType;
+
+  /// No description provided for @financeTypeSale.
+  ///
+  /// In en, this message translates to:
+  /// **'Sale'**
+  String get financeTypeSale;
+
+  /// No description provided for @financeTypeExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get financeTypeExpense;
+
+  /// No description provided for @financeTypeRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get financeTypeRefund;
+
+  /// No description provided for @financeFieldAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get financeFieldAmount;
+
+  /// No description provided for @financeFieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get financeFieldDate;
+
+  /// No description provided for @financeFieldNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get financeFieldNote;
+
+  /// No description provided for @financeFieldItemRef.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked item id (optional)'**
+  String get financeFieldItemRef;
+
+  /// No description provided for @financeFieldItemRefHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use for sales tied to a specific SKU.'**
+  String get financeFieldItemRefHint;
+
+  /// No description provided for @financeFieldUpiRef.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI reference (optional)'**
+  String get financeFieldUpiRef;
+
+  /// No description provided for @financeFieldUpiRefHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored encrypted on device — never in plain text.'**
+  String get financeFieldUpiRefHint;
+
+  /// No description provided for @financeValidationAmountRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount is required.'**
+  String get financeValidationAmountRequired;
+
+  /// No description provided for @financeValidationAmountInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid amount.'**
+  String get financeValidationAmountInvalid;
+
+  /// No description provided for @financeLedgerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ledger'**
+  String get financeLedgerTitle;
+
+  /// No description provided for @financeViewLedger.
+  ///
+  /// In en, this message translates to:
+  /// **'View ledger'**
+  String get financeViewLedger;
+
+  /// No description provided for @financeExportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export last 30 days'**
+  String get financeExportCsv;
+
+  /// No description provided for @financeExportCsvSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Vanij ledger export'**
+  String get financeExportCsvSubject;
+
+  /// No description provided for @financeFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get financeFilterAll;
+
+  /// No description provided for @crmCustomersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers'**
+  String get crmCustomersTitle;
+
+  /// No description provided for @crmAddCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Add customer'**
+  String get crmAddCustomer;
+
+  /// No description provided for @crmEditCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit customer'**
+  String get crmEditCustomer;
+
+  /// No description provided for @crmSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name'**
+  String get crmSearchHint;
+
+  /// No description provided for @crmCustomerFieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get crmCustomerFieldName;
+
+  /// No description provided for @crmCustomerFieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get crmCustomerFieldPhone;
+
+  /// No description provided for @crmCustomerFieldPhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored encrypted on device — never in plain text.'**
+  String get crmCustomerFieldPhoneHint;
+
+  /// No description provided for @crmCustomerFieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get crmCustomerFieldNotes;
+
+  /// No description provided for @crmCustomerFieldTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (comma-separated)'**
+  String get crmCustomerFieldTags;
+
+  /// No description provided for @crmCustomerSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer saved.'**
+  String get crmCustomerSaved;
+
+  /// No description provided for @crmCustomerValidationNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required.'**
+  String get crmCustomerValidationNameRequired;
+
+  /// No description provided for @crmCustomerValidationPhoneRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required.'**
+  String get crmCustomerValidationPhoneRequired;
+
+  /// No description provided for @crmCustomerValidationPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid phone number.'**
+  String get crmCustomerValidationPhoneInvalid;
+
+  /// No description provided for @crmCustomerDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete customer?'**
+  String get crmCustomerDeleteConfirmTitle;
+
+  /// No description provided for @crmCustomerDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat history will be hidden from the list. Cannot be undone.'**
+  String get crmCustomerDeleteConfirmBody;
+
+  /// No description provided for @crmCustomerDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get crmCustomerDelete;
+
+  /// No description provided for @crmNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No customers match this search.'**
+  String get crmNoResults;
+
+  /// No description provided for @crmLastMessagePrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Last message {when}'**
+  String crmLastMessagePrefix(Object when);
+
+  /// No description provided for @crmNoMessagesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet — send one to start the chat.'**
+  String get crmNoMessagesYet;
+
+  /// No description provided for @crmComposerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a message'**
+  String get crmComposerHint;
+
+  /// No description provided for @crmSenderMerchant.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get crmSenderMerchant;
+
+  /// No description provided for @crmSenderCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get crmSenderCustomer;
+
+  /// No description provided for @crmSenderAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get crmSenderAgent;
+
+  /// No description provided for @crmMessageEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get crmMessageEdit;
+
+  /// No description provided for @crmMessageEditSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get crmMessageEditSave;
+
+  /// No description provided for @crmMessageEditedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'edited'**
+  String get crmMessageEditedBadge;
+
+  /// No description provided for @crmMessageDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get crmMessageDelete;
+
+  /// No description provided for @crmCustomerDecryptFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone could not be decrypted on this device.'**
+  String get crmCustomerDecryptFailed;
 }
 
 class _AppLocalizationsDelegate
