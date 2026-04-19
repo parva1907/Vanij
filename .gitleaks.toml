@@ -10,8 +10,12 @@ title = "Vanij gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "Public Firebase Android API key in google-services.json"
+description = "Build artefacts and public Firebase Android API key"
 paths = [
     '''app/android/app/google-services\.json''',
     '''app/lib/firebase_options\.dart''',
+    '''(^|/)build/''',
+    '''(^|/)node_modules/''',
+    '''(^|/)\.dart_tool/''',
+    '''(^|/)lib/.*\.js\.map$''',
 ]
