@@ -48,6 +48,21 @@ class Settings(BaseSettings):
     default_rate_limit: str = "60/minute"
 
     # ------------------------------------------------------------------
+    # Vision tagger (Sprint 4)
+    # ------------------------------------------------------------------
+    # Which backend the vision tagger factory loads at startup.
+    #   "heuristic" (default) — deterministic stub used in CI, tests,
+    #     and local dev. No torch dependency, cold-start-safe.
+    #   "torch" — real PyTorch model. Requires the optional
+    #     ``vision`` extras and a loadable checkpoint; refuses to boot
+    #     until Sprint 4+ ships the training pipeline.
+    vision_backend: str = "heuristic"
+    # Hard cap on uploaded image size. Must stay aligned with the 5 MB
+    # Cloud Storage rule so a client can't stuff something through the
+    # backend that Storage would reject anyway.
+    max_image_bytes: int = 5 * 1024 * 1024
+
+    # ------------------------------------------------------------------
     # External API keys (kept empty in Sprint 3).
     # ------------------------------------------------------------------
     claude_api_key: str = ""

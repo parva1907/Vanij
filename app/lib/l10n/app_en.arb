@@ -54,6 +54,20 @@
   "inventoryValidationNeedAtLeastOneSize": "Add at least one size.",
   "inventoryValidationImageRequired": "Add a photo.",
   "inventoryUploadingImage": "Uploading photo…",
+  "inventoryAddWithAi": "Scan with AI",
+
+  "tagConfirmTitle": "Confirm tags",
+  "tagConfirmLoading": "Asking the AI to look at your photo…",
+  "tagConfirmHeadline": "Review the AI suggestions",
+  "tagConfirmSubheadline": "Nothing is saved until you tap Continue. Edit anything that looks wrong.",
+  "tagConfirmContinue": "Continue",
+  "tagConfirmSkip": "Skip AI suggestions",
+  "tagConfirmAiSuggested": "AI: {value}",
+  "@tagConfirmAiSuggested": {
+    "description": "Inline hint next to a form field showing what the AI suggested.",
+    "placeholders": { "value": { "type": "String" } }
+  },
+
   "commonCancel": "Cancel",
   "commonRetry": "Retry",
   "commonSaving": "Saving…"

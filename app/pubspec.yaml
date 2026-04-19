@@ -31,6 +31,12 @@ dependencies:
   path_provider: ^2.1.5
   uuid: ^4.5.1
 
+  # Multipart HTTP client used only for calling the Python AI backend
+  # (vision tagger, Sprint 7 LLM agent). Firebase SDKs ship their own
+  # transport; we never round-trip Firestore through this client.
+  http: ^1.2.2
+  http_parser: ^4.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

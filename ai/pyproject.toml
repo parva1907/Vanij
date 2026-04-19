@@ -15,6 +15,10 @@ dependencies = [
     "slowapi>=0.1.9",
     "firebase-admin>=6.5.0",
     "httpx>=0.27.0",
+    # FastAPI's UploadFile / File(...) path requires python-multipart.
+    # Pinned here rather than relying on fastapi[standard] because we
+    # want the Cloud Run runtime image to be as small as possible.
+    "python-multipart>=0.0.9",
 ]
 
 [project.optional-dependencies]
@@ -22,6 +26,15 @@ dev = [
     "pytest>=8.2.0",
     "httpx>=0.27.0",
     "ruff>=0.5.0",
+]
+
+# Real PyTorch-backed vision tagger. Installed only in the Cloud Run
+# image built for the `torch` backend — keeps the default cold start
+# (heuristic backend) snappy.
+vision = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "pillow>=10.3.0",
 ]
 
 [tool.pytest.ini_options]
