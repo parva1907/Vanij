@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_theme.dart';
@@ -48,6 +51,20 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
     }
   }
 
+  /// Kick off the AI-assisted add flow: pick an image, route through
+  /// `TagConfirmScreen`, and let the merchant confirm suggestions
+  /// before landing on `InventoryFormScreen`. Never auto-commits.
+  Future<void> _addWithAi() async {
+    final picker = ImagePicker();
+    final shot = await picker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 2560,
+      imageQuality: 95,
+    );
+    if (shot == null || !mounted) return;
+    context.push(VanijRoutes.inventoryTagConfirm, extra: File(shot.path));
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
@@ -55,7 +72,16 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
     final visible = ref.watch(visibleInventoryItemsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.navInventory)),
+      appBar: AppBar(
+        title: Text(l.navInventory),
+        actions: [
+          IconButton(
+            tooltip: l.inventoryAddWithAi,
+            icon: const Icon(Icons.auto_awesome_outlined),
+            onPressed: _addWithAi,
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push(VanijRoutes.inventoryNew),
         backgroundColor: VanijColors.primary,

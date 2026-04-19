@@ -42,7 +42,8 @@ class ImageUploadService {
   }
 
   /// Compresses [sourceFile] to WebP, writes a temp copy, and returns
-  /// the compressed path. Caller owns cleanup.
+  /// the compressed file. The caller is responsible for deleting it
+  /// once the upload succeeds or fails.
   Future<File> _compress(File sourceFile) async {
     final tmpDir = await getTemporaryDirectory();
     final outPath =
@@ -71,15 +72,29 @@ class ImageUploadService {
   }) async {
     final uid = _requireUid();
     final compressed = await _compress(sourceFile);
-    final ref = _storage.ref().child('merchants/$uid/inventory/$itemId.webp');
-    final task = await ref.putFile(
-      compressed,
-      SettableMetadata(
-        contentType: 'image/webp',
-        cacheControl: 'public,max-age=2592000',
-      ),
-    );
-    return task.ref.getDownloadURL();
+    try {
+      final ref = _storage.ref().child('merchants/$uid/inventory/$itemId.webp');
+      final task = await ref.putFile(
+        compressed,
+        SettableMetadata(
+          contentType: 'image/webp',
+          cacheControl: 'public,max-age=2592000',
+        ),
+      );
+      return task.ref.getDownloadURL();
+    } finally {
+      // Best-effort cleanup of the WebP temp file. Leaving it behind
+      // would leak ~100 KB–1 MB per upload on a device with limited
+      // storage. Failures here are ignored — the temp dir is pruned by
+      // the OS anyway.
+      try {
+        if (await compressed.exists()) {
+          await compressed.delete();
+        }
+      } on Object {
+        // ignore
+      }
+    }
   }
 }
 

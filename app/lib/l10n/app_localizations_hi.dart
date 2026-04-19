@@ -169,6 +169,33 @@ class AppLocalizationsHi extends AppLocalizations {
   String get inventoryUploadingImage => 'फ़ोटो अपलोड हो रही है…';
 
   @override
+  String get inventoryAddWithAi => 'AI से स्कैन करें';
+
+  @override
+  String get tagConfirmTitle => 'टैग की पुष्टि करें';
+
+  @override
+  String get tagConfirmLoading => 'AI आपकी फ़ोटो देख रहा है…';
+
+  @override
+  String get tagConfirmHeadline => 'AI के सुझाव देखें';
+
+  @override
+  String get tagConfirmSubheadline =>
+      'जब तक आप \'आगे बढ़ें\' नहीं दबाते, कुछ भी सहेजा नहीं जाएगा। जो गलत लगे वह बदल दें।';
+
+  @override
+  String get tagConfirmContinue => 'आगे बढ़ें';
+
+  @override
+  String get tagConfirmSkip => 'AI सुझाव छोड़ें';
+
+  @override
+  String tagConfirmAiSuggested(String value) {
+    return 'AI: $value';
+  }
+
+  @override
   String get commonCancel => 'रद्द करें';
 
   @override
