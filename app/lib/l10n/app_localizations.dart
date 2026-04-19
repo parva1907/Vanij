@@ -416,6 +416,54 @@ abstract class AppLocalizations {
   /// **'Uploading photo…'**
   String get inventoryUploadingImage;
 
+  /// No description provided for @inventoryAddWithAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan with AI'**
+  String get inventoryAddWithAi;
+
+  /// No description provided for @tagConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm tags'**
+  String get tagConfirmTitle;
+
+  /// No description provided for @tagConfirmLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking the AI to look at your photo…'**
+  String get tagConfirmLoading;
+
+  /// No description provided for @tagConfirmHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Review the AI suggestions'**
+  String get tagConfirmHeadline;
+
+  /// No description provided for @tagConfirmSubheadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing is saved until you tap Continue. Edit anything that looks wrong.'**
+  String get tagConfirmSubheadline;
+
+  /// No description provided for @tagConfirmContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get tagConfirmContinue;
+
+  /// No description provided for @tagConfirmSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip AI suggestions'**
+  String get tagConfirmSkip;
+
+  /// Inline hint next to a form field showing what the AI suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'AI: {value}'**
+  String tagConfirmAiSuggested(String value);
+
   /// No description provided for @commonCancel.
   ///
   /// In en, this message translates to:

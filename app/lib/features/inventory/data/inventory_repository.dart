@@ -125,6 +125,15 @@ class InventoryRepository {
     return ref.id;
   }
 
+  /// Creates the document at an explicit [itemId]. Used by the inventory
+  /// form so the image upload path and Firestore document share the
+  /// same stable ID — retrying a failed save is idempotent instead of
+  /// leaving orphaned placeholder documents behind.
+  Future<void> createWithId(String itemId, InventoryItem draft) async {
+    final uid = _requireUid();
+    await _collection(uid).doc(itemId).set(draft.toFirestore(isCreate: true));
+  }
+
   Future<void> update(InventoryItem item) async {
     final uid = _requireUid();
     await _collection(
