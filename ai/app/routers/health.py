@@ -46,8 +46,13 @@ def health() -> HealthResponse:
 @router.get("/ready", response_model=ReadyResponse)
 def ready() -> ReadyResponse:
     firebase_ready = bool(firebase_admin._apps)  # type: ignore[attr-defined]
+    # When ``AUTH_DISABLED=true`` (local dev / tests) we intentionally skip
+    # the firebase-admin init, so treating ``firebase_admin._apps`` as the
+    # sole readiness signal would wrongly mark the service unhealthy. In
+    # that mode the service is ready once the FastAPI app has booted.
+    is_ready = firebase_ready or settings.auth_disabled
     return ReadyResponse(
-        ok=firebase_ready,
+        ok=is_ready,
         service="vanij-ai",
         version=settings.app_version,
         environment=settings.environment,
