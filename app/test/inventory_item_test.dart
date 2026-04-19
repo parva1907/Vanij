@@ -4,17 +4,11 @@ import 'package:vanij/features/inventory/data/models/inventory_item.dart';
 void main() {
   group('InventoryItem.computeLowStock', () {
     test('returns true when any size has < 3 units', () {
-      expect(
-        InventoryItem.computeLowStock({'S': 5, 'M': 2, 'L': 10}),
-        isTrue,
-      );
+      expect(InventoryItem.computeLowStock({'S': 5, 'M': 2, 'L': 10}), isTrue);
     });
 
     test('returns false when every size has >= 3 units', () {
-      expect(
-        InventoryItem.computeLowStock({'S': 3, 'M': 4, 'L': 10}),
-        isFalse,
-      );
+      expect(InventoryItem.computeLowStock({'S': 3, 'M': 4, 'L': 10}), isFalse);
     });
 
     test('returns true when quantity map is empty', () {
