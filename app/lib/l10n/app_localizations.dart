@@ -583,6 +583,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All'**
   String get financeFilterAll;
+
+  /// No description provided for @crmCustomersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers'**
+  String get crmCustomersTitle;
+
+  /// No description provided for @crmAddCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Add customer'**
+  String get crmAddCustomer;
+
+  /// No description provided for @crmEditCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit customer'**
+  String get crmEditCustomer;
+
+  /// No description provided for @crmSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name'**
+  String get crmSearchHint;
+
+  /// No description provided for @crmCustomerFieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get crmCustomerFieldName;
+
+  /// No description provided for @crmCustomerFieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get crmCustomerFieldPhone;
+
+  /// No description provided for @crmCustomerFieldPhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored encrypted on device — never in plain text.'**
+  String get crmCustomerFieldPhoneHint;
+
+  /// No description provided for @crmCustomerFieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get crmCustomerFieldNotes;
+
+  /// No description provided for @crmCustomerFieldTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (comma-separated)'**
+  String get crmCustomerFieldTags;
+
+  /// No description provided for @crmCustomerSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer saved.'**
+  String get crmCustomerSaved;
+
+  /// No description provided for @crmCustomerValidationNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required.'**
+  String get crmCustomerValidationNameRequired;
+
+  /// No description provided for @crmCustomerValidationPhoneRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required.'**
+  String get crmCustomerValidationPhoneRequired;
+
+  /// No description provided for @crmCustomerValidationPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid phone number.'**
+  String get crmCustomerValidationPhoneInvalid;
+
+  /// No description provided for @crmCustomerDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete customer?'**
+  String get crmCustomerDeleteConfirmTitle;
+
+  /// No description provided for @crmCustomerDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat history will be hidden from the list. Cannot be undone.'**
+  String get crmCustomerDeleteConfirmBody;
+
+  /// No description provided for @crmCustomerDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get crmCustomerDelete;
+
+  /// No description provided for @crmNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No customers match this search.'**
+  String get crmNoResults;
+
+  /// No description provided for @crmLastMessagePrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Last message {when}'**
+  String crmLastMessagePrefix(Object when);
+
+  /// No description provided for @crmNoMessagesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet — send one to start the chat.'**
+  String get crmNoMessagesYet;
+
+  /// No description provided for @crmComposerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a message'**
+  String get crmComposerHint;
+
+  /// No description provided for @crmSenderMerchant.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get crmSenderMerchant;
+
+  /// No description provided for @crmSenderCustomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get crmSenderCustomer;
+
+  /// No description provided for @crmSenderAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get crmSenderAgent;
+
+  /// No description provided for @crmMessageEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get crmMessageEdit;
+
+  /// No description provided for @crmMessageEditSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get crmMessageEditSave;
+
+  /// No description provided for @crmMessageEditedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'edited'**
+  String get crmMessageEditedBadge;
+
+  /// No description provided for @crmMessageDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get crmMessageDelete;
+
+  /// No description provided for @crmCustomerDecryptFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone could not be decrypted on this device.'**
+  String get crmCustomerDecryptFailed;
 }
 
 class _AppLocalizationsDelegate

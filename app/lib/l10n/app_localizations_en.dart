@@ -253,4 +253,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get financeFilterAll => 'All';
+
+  @override
+  String get crmCustomersTitle => 'Customers';
+
+  @override
+  String get crmAddCustomer => 'Add customer';
+
+  @override
+  String get crmEditCustomer => 'Edit customer';
+
+  @override
+  String get crmSearchHint => 'Search by name';
+
+  @override
+  String get crmCustomerFieldName => 'Name';
+
+  @override
+  String get crmCustomerFieldPhone => 'Phone';
+
+  @override
+  String get crmCustomerFieldPhoneHint =>
+      'Stored encrypted on device — never in plain text.';
+
+  @override
+  String get crmCustomerFieldNotes => 'Notes (optional)';
+
+  @override
+  String get crmCustomerFieldTags => 'Tags (comma-separated)';
+
+  @override
+  String get crmCustomerSaved => 'Customer saved.';
+
+  @override
+  String get crmCustomerValidationNameRequired => 'Name is required.';
+
+  @override
+  String get crmCustomerValidationPhoneRequired => 'Phone is required.';
+
+  @override
+  String get crmCustomerValidationPhoneInvalid => 'Enter a valid phone number.';
+
+  @override
+  String get crmCustomerDeleteConfirmTitle => 'Delete customer?';
+
+  @override
+  String get crmCustomerDeleteConfirmBody =>
+      'Chat history will be hidden from the list. Cannot be undone.';
+
+  @override
+  String get crmCustomerDelete => 'Delete';
+
+  @override
+  String get crmNoResults => 'No customers match this search.';
+
+  @override
+  String crmLastMessagePrefix(Object when) {
+    return 'Last message $when';
+  }
+
+  @override
+  String get crmNoMessagesYet =>
+      'No messages yet — send one to start the chat.';
+
+  @override
+  String get crmComposerHint => 'Type a message';
+
+  @override
+  String get crmSenderMerchant => 'You';
+
+  @override
+  String get crmSenderCustomer => 'Customer';
+
+  @override
+  String get crmSenderAgent => 'Assistant';
+
+  @override
+  String get crmMessageEdit => 'Edit';
+
+  @override
+  String get crmMessageEditSave => 'Save';
+
+  @override
+  String get crmMessageEditedBadge => 'edited';
+
+  @override
+  String get crmMessageDelete => 'Delete';
+
+  @override
+  String get crmCustomerDecryptFailed =>
+      'Phone could not be decrypted on this device.';
 }

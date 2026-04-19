@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/sign_in_screen.dart';
 import '../../features/auth/presentation/sign_up_screen.dart';
 import '../../features/auth/providers/auth_providers.dart';
+import '../../features/crm/data/models/customer.dart';
+import '../../features/crm/presentation/add_customer_screen.dart';
+import '../../features/crm/presentation/chat_screen.dart';
 import '../../features/crm/presentation/customers_screen.dart';
 import '../../features/finance/presentation/add_ledger_entry_screen.dart';
 import '../../features/finance/presentation/finance_screen.dart';
@@ -24,6 +27,9 @@ class VanijRoutes {
   static const inventory = '/inventory';
   static const inventoryNew = '/inventory/new';
   static const customers = '/customers';
+  static const customersNew = '/customers/new';
+  static String customerChat(String id) => '/customers/$id';
+  static String customerEdit(String id) => '/customers/$id/edit';
   static const finance = '/finance';
   static const financeNew = '/finance/new';
   static const financeLedger = '/finance/ledger';
@@ -89,6 +95,27 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: VanijRoutes.customers,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: CustomersScreen()),
+            routes: [
+              GoRoute(
+                path: 'new',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) => const AddCustomerScreen(),
+              ),
+              GoRoute(
+                path: ':id',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) =>
+                    ChatScreen(customerId: state.pathParameters['id']!),
+                routes: [
+                  GoRoute(
+                    path: 'edit',
+                    parentNavigatorKey: _rootNavKey,
+                    builder: (context, state) =>
+                        AddCustomerScreen(existing: state.extra as Customer?),
+                  ),
+                ],
+              ),
+            ],
           ),
           GoRoute(
             path: VanijRoutes.finance,

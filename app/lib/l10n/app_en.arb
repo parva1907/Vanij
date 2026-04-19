@@ -89,5 +89,39 @@
   "financeViewLedger": "View ledger",
   "financeExportCsv": "Export last 30 days",
   "financeExportCsvSubject": "Vanij ledger export",
-  "financeFilterAll": "All"
+  "financeFilterAll": "All",
+
+  "crmCustomersTitle": "Customers",
+  "crmAddCustomer": "Add customer",
+  "crmEditCustomer": "Edit customer",
+  "crmSearchHint": "Search by name",
+  "crmCustomerFieldName": "Name",
+  "crmCustomerFieldPhone": "Phone",
+  "crmCustomerFieldPhoneHint": "Stored encrypted on device — never in plain text.",
+  "crmCustomerFieldNotes": "Notes (optional)",
+  "crmCustomerFieldTags": "Tags (comma-separated)",
+  "crmCustomerSaved": "Customer saved.",
+  "crmCustomerValidationNameRequired": "Name is required.",
+  "crmCustomerValidationPhoneRequired": "Phone is required.",
+  "crmCustomerValidationPhoneInvalid": "Enter a valid phone number.",
+  "crmCustomerDeleteConfirmTitle": "Delete customer?",
+  "crmCustomerDeleteConfirmBody": "Chat history will be hidden from the list. Cannot be undone.",
+  "crmCustomerDelete": "Delete",
+  "crmNoResults": "No customers match this search.",
+  "crmLastMessagePrefix": "Last message {when}",
+  "@crmLastMessagePrefix": {
+    "placeholders": {
+      "when": {}
+    }
+  },
+  "crmNoMessagesYet": "No messages yet — send one to start the chat.",
+  "crmComposerHint": "Type a message",
+  "crmSenderMerchant": "You",
+  "crmSenderCustomer": "Customer",
+  "crmSenderAgent": "Assistant",
+  "crmMessageEdit": "Edit",
+  "crmMessageEditSave": "Save",
+  "crmMessageEditedBadge": "edited",
+  "crmMessageDelete": "Delete",
+  "crmCustomerDecryptFailed": "Phone could not be decrypted on this device."
 }
