@@ -122,19 +122,31 @@ class VanijCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    // Flutter asserts that `BoxDecoration.borderRadius` requires a uniform
+    // `Border`, so the primary-coloured left accent is painted separately
+    // via a nested rounded container on a 3-px tinted background.
+    return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: VanijColors.primary,
         borderRadius: BorderRadius.circular(8),
-        border: const Border(
-          left: BorderSide(color: VanijColors.primary, width: 3),
-          top: BorderSide(color: VanijColors.divider),
-          right: BorderSide(color: VanijColors.divider),
-          bottom: BorderSide(color: VanijColors.divider),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 3),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            ),
+            border: Border.all(color: VanijColors.divider),
+          ),
+          child: Padding(
+            padding: padding ?? const EdgeInsets.all(16),
+            child: child,
+          ),
         ),
       ),
-      padding: padding ?? const EdgeInsets.all(16),
-      child: child,
     );
   }
 }

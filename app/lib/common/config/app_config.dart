@@ -15,15 +15,15 @@ class AppConfig {
 
   String get pythonBackendUrl => _pythonBackendUrl;
 
+  /// Verifies `PYTHON_BACKEND_URL` was provided at build time. Runs in every
+  /// mode (debug, profile, release) — never wrap this in `assert()` because
+  /// `assert` is stripped in release builds.
   void assertConfigured() {
-    assert(() {
-      if (_pythonBackendUrl.isEmpty) {
-        throw StateError(
-          'PYTHON_BACKEND_URL was not supplied. Pass it via '
-          '--dart-define=PYTHON_BACKEND_URL=<url>.',
-        );
-      }
-      return true;
-    }());
+    if (_pythonBackendUrl.isEmpty) {
+      throw StateError(
+        'PYTHON_BACKEND_URL was not supplied. Pass it via '
+        '--dart-define=PYTHON_BACKEND_URL=<url>.',
+      );
+    }
   }
 }
