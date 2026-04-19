@@ -35,29 +35,38 @@ class LedgerCipher {
   final FlutterSecureStorage _storage;
   final AesGcm _algorithm;
   final Random _rng;
-  SecretKey? _cachedKey;
 
-  /// Returns the cached AES-256 key, loading it from secure storage or
-  /// creating one on first use. Calls are serialised on the Dart event
-  /// loop so two concurrent callers can't race to create two keys.
-  Future<SecretKey> _key() async {
-    final cached = _cachedKey;
-    if (cached != null) return cached;
-    final existing = await _storage.read(key: _keyStorageKey);
-    if (existing != null && existing.isNotEmpty) {
-      final bytes = base64Decode(existing);
-      final key = SecretKey(bytes);
-      _cachedKey = key;
-      return key;
+  /// Shared future for the key-load. Using a single future (not a
+  /// resolved value) means every concurrent caller awaits the same
+  /// load/generate flow — no race window where two callers both see
+  /// the keystore empty and both write a fresh key.
+  Future<SecretKey>? _keyFuture;
+
+  /// Returns the AES-256 key, loading from secure storage or creating
+  /// one on first use. Concurrent callers share a single [Future], so
+  /// two parallel calls cannot each generate and persist a different
+  /// key.
+  Future<SecretKey> _key() {
+    return _keyFuture ??= _loadOrCreateKey();
+  }
+
+  Future<SecretKey> _loadOrCreateKey() async {
+    try {
+      final existing = await _storage.read(key: _keyStorageKey);
+      if (existing != null && existing.isNotEmpty) {
+        return SecretKey(base64Decode(existing));
+      }
+      final bytes = Uint8List(32);
+      for (var i = 0; i < bytes.length; i++) {
+        bytes[i] = _rng.nextInt(256);
+      }
+      await _storage.write(key: _keyStorageKey, value: base64Encode(bytes));
+      return SecretKey(bytes);
+    } catch (e) {
+      // Drop the cached future on failure so the next caller can retry.
+      _keyFuture = null;
+      rethrow;
     }
-    final bytes = Uint8List(32);
-    for (var i = 0; i < bytes.length; i++) {
-      bytes[i] = _rng.nextInt(256);
-    }
-    await _storage.write(key: _keyStorageKey, value: base64Encode(bytes));
-    final key = SecretKey(bytes);
-    _cachedKey = key;
-    return key;
   }
 
   Uint8List _randomNonce() {

@@ -149,6 +149,27 @@ void main() {
       expect(await second.decrypt(envelope), equals('UPI/REF/SHARED'));
     });
 
+    test('concurrent first-use calls share a single generated key', () async {
+      final storage = _FakeSecureStorage();
+      final cipher = LedgerCipher(storage: storage);
+      // Fire many encryptions concurrently on a fresh storage so the
+      // key-load path races with itself.
+      final blobs = await Future.wait([
+        for (var i = 0; i < 16; i++) cipher.encrypt('UPI/REF/RACE-$i'),
+      ]);
+      final all = await storage.readAll();
+      expect(
+        all.length,
+        1,
+        reason: 'multiple keys would indicate a race-generated second key',
+      );
+      // Every blob must decrypt with the single persisted key.
+      final fresh = LedgerCipher(storage: storage);
+      for (var i = 0; i < blobs.length; i++) {
+        expect(await fresh.decrypt(blobs[i]), 'UPI/REF/RACE-$i');
+      }
+    });
+
     test('nonces are not repeated over 64 consecutive encryptions', () async {
       final cipher = LedgerCipher(
         storage: _FakeSecureStorage(),

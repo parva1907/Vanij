@@ -238,9 +238,12 @@ class FinanceScreen extends ConsumerWidget {
     ).add(const Duration(days: 1));
     final from = to.subtract(const Duration(days: 30));
     final service = ref.read(csvExportServiceProvider);
-    navigator.overlay?.insert(
-      OverlayEntry(builder: (_) => Container(color: Colors.black26)),
+    // Modal barrier while the CSV is being generated. Kept in a local
+    // so the `finally` block is guaranteed to remove it even on error.
+    final barrier = OverlayEntry(
+      builder: (_) => const ColoredBox(color: Color(0x55000000)),
     );
+    navigator.overlay?.insert(barrier);
     try {
       final file = await service.exportRange(from: from, to: to);
       await Share.shareXFiles([
@@ -248,6 +251,8 @@ class FinanceScreen extends ConsumerWidget {
       ], subject: l.financeExportCsvSubject);
     } catch (e) {
       messenger.showSnackBar(SnackBar(content: Text(l.genericError)));
+    } finally {
+      barrier.remove();
     }
   }
 }
