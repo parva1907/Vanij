@@ -202,4 +202,172 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonSaving => 'Saving…';
+
+  @override
+  String get financeToday => 'Today';
+
+  @override
+  String financeTodayBreakdown(Object sales, Object refunds, Object expenses) {
+    return 'Sales $sales · Refunds $refunds · Expenses $expenses';
+  }
+
+  @override
+  String get financeWeekPnl => 'Last 7 days P&L';
+
+  @override
+  String get financeTopItems => 'Top items this week';
+
+  @override
+  String get financeTopItemsEmpty => 'No linked sales this week yet.';
+
+  @override
+  String get financeAddEntry => 'Add entry';
+
+  @override
+  String get financeEntrySaved => 'Entry saved to ledger.';
+
+  @override
+  String get financeEntryType => 'Type';
+
+  @override
+  String get financeTypeSale => 'Sale';
+
+  @override
+  String get financeTypeExpense => 'Expense';
+
+  @override
+  String get financeTypeRefund => 'Refund';
+
+  @override
+  String get financeFieldAmount => 'Amount';
+
+  @override
+  String get financeFieldDate => 'Date';
+
+  @override
+  String get financeFieldNote => 'Note (optional)';
+
+  @override
+  String get financeFieldItemRef => 'Linked item id (optional)';
+
+  @override
+  String get financeFieldItemRefHint => 'Use for sales tied to a specific SKU.';
+
+  @override
+  String get financeFieldUpiRef => 'UPI reference (optional)';
+
+  @override
+  String get financeFieldUpiRefHint =>
+      'Stored encrypted on device — never in plain text.';
+
+  @override
+  String get financeValidationAmountRequired => 'Amount is required.';
+
+  @override
+  String get financeValidationAmountInvalid => 'Enter a valid amount.';
+
+  @override
+  String get financeLedgerTitle => 'Ledger';
+
+  @override
+  String get financeViewLedger => 'View ledger';
+
+  @override
+  String get financeExportCsv => 'Export last 30 days';
+
+  @override
+  String get financeExportCsvSubject => 'Vanij ledger export';
+
+  @override
+  String get financeFilterAll => 'All';
+
+  @override
+  String get crmCustomersTitle => 'Customers';
+
+  @override
+  String get crmAddCustomer => 'Add customer';
+
+  @override
+  String get crmEditCustomer => 'Edit customer';
+
+  @override
+  String get crmSearchHint => 'Search by name';
+
+  @override
+  String get crmCustomerFieldName => 'Name';
+
+  @override
+  String get crmCustomerFieldPhone => 'Phone';
+
+  @override
+  String get crmCustomerFieldPhoneHint =>
+      'Stored encrypted on device — never in plain text.';
+
+  @override
+  String get crmCustomerFieldNotes => 'Notes (optional)';
+
+  @override
+  String get crmCustomerFieldTags => 'Tags (comma-separated)';
+
+  @override
+  String get crmCustomerSaved => 'Customer saved.';
+
+  @override
+  String get crmCustomerValidationNameRequired => 'Name is required.';
+
+  @override
+  String get crmCustomerValidationPhoneRequired => 'Phone is required.';
+
+  @override
+  String get crmCustomerValidationPhoneInvalid => 'Enter a valid phone number.';
+
+  @override
+  String get crmCustomerDeleteConfirmTitle => 'Delete customer?';
+
+  @override
+  String get crmCustomerDeleteConfirmBody =>
+      'Chat history will be hidden from the list. Cannot be undone.';
+
+  @override
+  String get crmCustomerDelete => 'Delete';
+
+  @override
+  String get crmNoResults => 'No customers match this search.';
+
+  @override
+  String crmLastMessagePrefix(Object when) {
+    return 'Last message $when';
+  }
+
+  @override
+  String get crmNoMessagesYet =>
+      'No messages yet — send one to start the chat.';
+
+  @override
+  String get crmComposerHint => 'Type a message';
+
+  @override
+  String get crmSenderMerchant => 'You';
+
+  @override
+  String get crmSenderCustomer => 'Customer';
+
+  @override
+  String get crmSenderAgent => 'Assistant';
+
+  @override
+  String get crmMessageEdit => 'Edit';
+
+  @override
+  String get crmMessageEditSave => 'Save';
+
+  @override
+  String get crmMessageEditedBadge => 'edited';
+
+  @override
+  String get crmMessageDelete => 'Delete';
+
+  @override
+  String get crmCustomerDecryptFailed =>
+      'Phone could not be decrypted on this device.';
 }
