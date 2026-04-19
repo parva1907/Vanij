@@ -56,5 +56,72 @@
   "inventoryUploadingImage": "Uploading photo…",
   "commonCancel": "Cancel",
   "commonRetry": "Retry",
-  "commonSaving": "Saving…"
+  "commonSaving": "Saving…",
+
+  "financeToday": "Today",
+  "financeTodayBreakdown": "Sales {sales} · Refunds {refunds} · Expenses {expenses}",
+  "@financeTodayBreakdown": {
+    "placeholders": {
+      "sales": {},
+      "refunds": {},
+      "expenses": {}
+    }
+  },
+  "financeWeekPnl": "Last 7 days P&L",
+  "financeTopItems": "Top items this week",
+  "financeTopItemsEmpty": "No linked sales this week yet.",
+  "financeAddEntry": "Add entry",
+  "financeEntrySaved": "Entry saved to ledger.",
+  "financeEntryType": "Type",
+  "financeTypeSale": "Sale",
+  "financeTypeExpense": "Expense",
+  "financeTypeRefund": "Refund",
+  "financeFieldAmount": "Amount",
+  "financeFieldDate": "Date",
+  "financeFieldNote": "Note (optional)",
+  "financeFieldItemRef": "Linked item id (optional)",
+  "financeFieldItemRefHint": "Use for sales tied to a specific SKU.",
+  "financeFieldUpiRef": "UPI reference (optional)",
+  "financeFieldUpiRefHint": "Stored encrypted on device — never in plain text.",
+  "financeValidationAmountRequired": "Amount is required.",
+  "financeValidationAmountInvalid": "Enter a valid amount.",
+  "financeLedgerTitle": "Ledger",
+  "financeViewLedger": "View ledger",
+  "financeExportCsv": "Export last 30 days",
+  "financeExportCsvSubject": "Vanij ledger export",
+  "financeFilterAll": "All",
+
+  "crmCustomersTitle": "Customers",
+  "crmAddCustomer": "Add customer",
+  "crmEditCustomer": "Edit customer",
+  "crmSearchHint": "Search by name",
+  "crmCustomerFieldName": "Name",
+  "crmCustomerFieldPhone": "Phone",
+  "crmCustomerFieldPhoneHint": "Stored encrypted on device — never in plain text.",
+  "crmCustomerFieldNotes": "Notes (optional)",
+  "crmCustomerFieldTags": "Tags (comma-separated)",
+  "crmCustomerSaved": "Customer saved.",
+  "crmCustomerValidationNameRequired": "Name is required.",
+  "crmCustomerValidationPhoneRequired": "Phone is required.",
+  "crmCustomerValidationPhoneInvalid": "Enter a valid phone number.",
+  "crmCustomerDeleteConfirmTitle": "Delete customer?",
+  "crmCustomerDeleteConfirmBody": "Chat history will be hidden from the list. Cannot be undone.",
+  "crmCustomerDelete": "Delete",
+  "crmNoResults": "No customers match this search.",
+  "crmLastMessagePrefix": "Last message {when}",
+  "@crmLastMessagePrefix": {
+    "placeholders": {
+      "when": {}
+    }
+  },
+  "crmNoMessagesYet": "No messages yet — send one to start the chat.",
+  "crmComposerHint": "Type a message",
+  "crmSenderMerchant": "You",
+  "crmSenderCustomer": "Customer",
+  "crmSenderAgent": "Assistant",
+  "crmMessageEdit": "Edit",
+  "crmMessageEditSave": "Save",
+  "crmMessageEditedBadge": "edited",
+  "crmMessageDelete": "Delete",
+  "crmCustomerDecryptFailed": "Phone could not be decrypted on this device."
 }

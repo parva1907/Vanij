@@ -56,5 +56,72 @@
   "inventoryUploadingImage": "फ़ोटो अपलोड हो रही है…",
   "commonCancel": "रद्द करें",
   "commonRetry": "फिर कोशिश करें",
-  "commonSaving": "सहेज रहे हैं…"
+  "commonSaving": "सहेज रहे हैं…",
+
+  "financeToday": "आज",
+  "financeTodayBreakdown": "बिक्री {sales} · वापसी {refunds} · खर्च {expenses}",
+  "@financeTodayBreakdown": {
+    "placeholders": {
+      "sales": {},
+      "refunds": {},
+      "expenses": {}
+    }
+  },
+  "financeWeekPnl": "पिछले 7 दिनों का लाभ/हानि",
+  "financeTopItems": "इस हफ़्ते सबसे ज़्यादा बिके",
+  "financeTopItemsEmpty": "इस हफ़्ते अभी कोई जुड़ी हुई बिक्री नहीं।",
+  "financeAddEntry": "नया लेन-देन",
+  "financeEntrySaved": "लेन-देन खाते में सहेजा गया।",
+  "financeEntryType": "प्रकार",
+  "financeTypeSale": "बिक्री",
+  "financeTypeExpense": "खर्च",
+  "financeTypeRefund": "वापसी",
+  "financeFieldAmount": "रक़म",
+  "financeFieldDate": "तारीख़",
+  "financeFieldNote": "नोट (वैकल्पिक)",
+  "financeFieldItemRef": "जुड़ा हुआ सामान आईडी (वैकल्पिक)",
+  "financeFieldItemRefHint": "किसी विशेष सामान की बिक्री के लिए।",
+  "financeFieldUpiRef": "UPI रेफ़रेंस (वैकल्पिक)",
+  "financeFieldUpiRefHint": "डिवाइस पर एन्क्रिप्ट करके सहेजा जाता है — कभी भी प्लेन टेक्स्ट में नहीं।",
+  "financeValidationAmountRequired": "रक़म ज़रूरी है।",
+  "financeValidationAmountInvalid": "सही रक़म दर्ज करें।",
+  "financeLedgerTitle": "खाता-बही",
+  "financeViewLedger": "खाता-बही देखें",
+  "financeExportCsv": "पिछले 30 दिन CSV डाउनलोड",
+  "financeExportCsvSubject": "वणिज् खाता-बही",
+  "financeFilterAll": "सभी",
+
+  "crmCustomersTitle": "ग्राहक",
+  "crmAddCustomer": "नया ग्राहक",
+  "crmEditCustomer": "ग्राहक बदलें",
+  "crmSearchHint": "नाम से खोजें",
+  "crmCustomerFieldName": "नाम",
+  "crmCustomerFieldPhone": "फ़ोन",
+  "crmCustomerFieldPhoneHint": "डिवाइस पर एन्क्रिप्ट करके सहेजा जाता है — कभी भी प्लेन टेक्स्ट में नहीं।",
+  "crmCustomerFieldNotes": "नोट्स (वैकल्पिक)",
+  "crmCustomerFieldTags": "टैग (कॉमा से अलग)",
+  "crmCustomerSaved": "ग्राहक सहेजा गया।",
+  "crmCustomerValidationNameRequired": "नाम ज़रूरी है।",
+  "crmCustomerValidationPhoneRequired": "फ़ोन ज़रूरी है।",
+  "crmCustomerValidationPhoneInvalid": "सही फ़ोन नंबर दर्ज करें।",
+  "crmCustomerDeleteConfirmTitle": "ग्राहक हटाएँ?",
+  "crmCustomerDeleteConfirmBody": "चैट इतिहास सूची से हट जाएगा। यह वापस नहीं होगा।",
+  "crmCustomerDelete": "हटाएँ",
+  "crmNoResults": "इस खोज से कोई ग्राहक नहीं मिला।",
+  "crmLastMessagePrefix": "आख़िरी संदेश {when}",
+  "@crmLastMessagePrefix": {
+    "placeholders": {
+      "when": {}
+    }
+  },
+  "crmNoMessagesYet": "अभी तक कोई संदेश नहीं — पहला संदेश भेजें।",
+  "crmComposerHint": "संदेश लिखें",
+  "crmSenderMerchant": "आप",
+  "crmSenderCustomer": "ग्राहक",
+  "crmSenderAgent": "सहायक",
+  "crmMessageEdit": "बदलें",
+  "crmMessageEditSave": "सहेजें",
+  "crmMessageEditedBadge": "बदला गया",
+  "crmMessageDelete": "हटाएँ",
+  "crmCustomerDecryptFailed": "इस डिवाइस पर फ़ोन डिक्रिप्ट नहीं हो सका।"
 }

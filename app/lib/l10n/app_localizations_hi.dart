@@ -176,4 +176,171 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get commonSaving => 'सहेज रहे हैं…';
+
+  @override
+  String get financeToday => 'आज';
+
+  @override
+  String financeTodayBreakdown(Object sales, Object refunds, Object expenses) {
+    return 'बिक्री $sales · वापसी $refunds · खर्च $expenses';
+  }
+
+  @override
+  String get financeWeekPnl => 'पिछले 7 दिनों का लाभ/हानि';
+
+  @override
+  String get financeTopItems => 'इस हफ़्ते सबसे ज़्यादा बिके';
+
+  @override
+  String get financeTopItemsEmpty => 'इस हफ़्ते अभी कोई जुड़ी हुई बिक्री नहीं।';
+
+  @override
+  String get financeAddEntry => 'नया लेन-देन';
+
+  @override
+  String get financeEntrySaved => 'लेन-देन खाते में सहेजा गया।';
+
+  @override
+  String get financeEntryType => 'प्रकार';
+
+  @override
+  String get financeTypeSale => 'बिक्री';
+
+  @override
+  String get financeTypeExpense => 'खर्च';
+
+  @override
+  String get financeTypeRefund => 'वापसी';
+
+  @override
+  String get financeFieldAmount => 'रक़म';
+
+  @override
+  String get financeFieldDate => 'तारीख़';
+
+  @override
+  String get financeFieldNote => 'नोट (वैकल्पिक)';
+
+  @override
+  String get financeFieldItemRef => 'जुड़ा हुआ सामान आईडी (वैकल्पिक)';
+
+  @override
+  String get financeFieldItemRefHint => 'किसी विशेष सामान की बिक्री के लिए।';
+
+  @override
+  String get financeFieldUpiRef => 'UPI रेफ़रेंस (वैकल्पिक)';
+
+  @override
+  String get financeFieldUpiRefHint =>
+      'डिवाइस पर एन्क्रिप्ट करके सहेजा जाता है — कभी भी प्लेन टेक्स्ट में नहीं।';
+
+  @override
+  String get financeValidationAmountRequired => 'रक़म ज़रूरी है।';
+
+  @override
+  String get financeValidationAmountInvalid => 'सही रक़म दर्ज करें।';
+
+  @override
+  String get financeLedgerTitle => 'खाता-बही';
+
+  @override
+  String get financeViewLedger => 'खाता-बही देखें';
+
+  @override
+  String get financeExportCsv => 'पिछले 30 दिन CSV डाउनलोड';
+
+  @override
+  String get financeExportCsvSubject => 'वणिज् खाता-बही';
+
+  @override
+  String get financeFilterAll => 'सभी';
+
+  @override
+  String get crmCustomersTitle => 'ग्राहक';
+
+  @override
+  String get crmAddCustomer => 'नया ग्राहक';
+
+  @override
+  String get crmEditCustomer => 'ग्राहक बदलें';
+
+  @override
+  String get crmSearchHint => 'नाम से खोजें';
+
+  @override
+  String get crmCustomerFieldName => 'नाम';
+
+  @override
+  String get crmCustomerFieldPhone => 'फ़ोन';
+
+  @override
+  String get crmCustomerFieldPhoneHint =>
+      'डिवाइस पर एन्क्रिप्ट करके सहेजा जाता है — कभी भी प्लेन टेक्स्ट में नहीं।';
+
+  @override
+  String get crmCustomerFieldNotes => 'नोट्स (वैकल्पिक)';
+
+  @override
+  String get crmCustomerFieldTags => 'टैग (कॉमा से अलग)';
+
+  @override
+  String get crmCustomerSaved => 'ग्राहक सहेजा गया।';
+
+  @override
+  String get crmCustomerValidationNameRequired => 'नाम ज़रूरी है।';
+
+  @override
+  String get crmCustomerValidationPhoneRequired => 'फ़ोन ज़रूरी है।';
+
+  @override
+  String get crmCustomerValidationPhoneInvalid => 'सही फ़ोन नंबर दर्ज करें।';
+
+  @override
+  String get crmCustomerDeleteConfirmTitle => 'ग्राहक हटाएँ?';
+
+  @override
+  String get crmCustomerDeleteConfirmBody =>
+      'चैट इतिहास सूची से हट जाएगा। यह वापस नहीं होगा।';
+
+  @override
+  String get crmCustomerDelete => 'हटाएँ';
+
+  @override
+  String get crmNoResults => 'इस खोज से कोई ग्राहक नहीं मिला।';
+
+  @override
+  String crmLastMessagePrefix(Object when) {
+    return 'आख़िरी संदेश $when';
+  }
+
+  @override
+  String get crmNoMessagesYet => 'अभी तक कोई संदेश नहीं — पहला संदेश भेजें।';
+
+  @override
+  String get crmComposerHint => 'संदेश लिखें';
+
+  @override
+  String get crmSenderMerchant => 'आप';
+
+  @override
+  String get crmSenderCustomer => 'ग्राहक';
+
+  @override
+  String get crmSenderAgent => 'सहायक';
+
+  @override
+  String get crmMessageEdit => 'बदलें';
+
+  @override
+  String get crmMessageEditSave => 'सहेजें';
+
+  @override
+  String get crmMessageEditedBadge => 'बदला गया';
+
+  @override
+  String get crmMessageDelete => 'हटाएँ';
+
+  @override
+  String get crmCustomerDecryptFailed =>
+      'इस डिवाइस पर फ़ोन डिक्रिप्ट नहीं हो सका।';
 }
