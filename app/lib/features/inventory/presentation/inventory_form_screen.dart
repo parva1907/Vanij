@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
@@ -47,6 +48,13 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
   bool _uploading = false;
   bool _loadingExisting = false;
   String? _loadError;
+
+  /// Client-generated ID for a new item. Generated lazily on first save
+  /// so retries reuse the same ID — the storage blob path
+  /// (`merchants/$uid/inventory/$_newItemId.webp`) and the Firestore
+  /// document ID stay in sync, so a failed upload or write never leaves
+  /// an orphaned placeholder document behind.
+  String? _newItemId;
 
   @override
   void initState() {
@@ -122,45 +130,24 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
     final price = double.tryParse(_priceCtrl.text.trim()) ?? 0;
     final cost = double.tryParse(_costCtrl.text.trim()) ?? 0;
 
+    // Use the existing ID on edit; otherwise generate one once and reuse
+    // it across retries so image blob + Firestore doc stay aligned.
+    final isCreate = widget.itemId == null;
+    final itemId = widget.itemId ?? (_newItemId ??= const Uuid().v4());
+
     String imageUrl = _existingImageUrl;
-    String? idToUploadAgainst = widget.itemId;
     final mutation = ref.read(inventoryMutationControllerProvider.notifier);
 
     try {
-      if (widget.itemId == null) {
-        // Create a placeholder item first so we have an ID for the blob path.
-        final placeholder = InventoryItem(
-          id: '',
-          name: _nameCtrl.text.trim(),
-          category: _category,
-          colors: _colors.toList(),
-          sizes: _quantity.keys.toList(),
-          quantity: Map.of(_quantity),
-          price: price,
-          costPrice: cost,
-          imageUrl: '',
-          pattern: _patternCtrl.text.trim().isEmpty
-              ? null
-              : _patternCtrl.text.trim(),
-          lowStock: InventoryItem.computeLowStock(_quantity),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-        );
-        idToUploadAgainst = await mutation.save(draft: placeholder);
-      }
-
       if (_pickedImage != null) {
         setState(() => _uploading = true);
         imageUrl = await ref
             .read(imageUploadServiceProvider)
-            .uploadInventoryImage(
-              sourceFile: _pickedImage!,
-              itemId: idToUploadAgainst!,
-            );
+            .uploadInventoryImage(sourceFile: _pickedImage!, itemId: itemId);
       }
 
       final finalItem = InventoryItem(
-        id: idToUploadAgainst!,
+        id: itemId,
         name: _nameCtrl.text.trim(),
         category: _category,
         colors: _colors.toList(),
@@ -176,7 +163,7 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );
-      await mutation.save(draft: finalItem, itemId: idToUploadAgainst);
+      await mutation.save(draft: finalItem, itemId: itemId, isNew: isCreate);
 
       if (!mounted) return;
       context.pop();
