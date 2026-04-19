@@ -1,0 +1,106 @@
+rules_version = '2';
+
+// ============================================================
+// Vanij — Firestore security rules
+//
+// Default-deny. Every collection below is scoped to the owning
+// merchant. No `allow read, write: if true;` anywhere — ever.
+//
+// Data model (per-merchant multi-tenant):
+//   merchants/{merchantId}
+//     ├── inventory/{itemId}
+//     ├── customers/{customerId}
+//     │     └── messages/{messageId}
+//     ├── ledger/{entryId}
+//     └── settings/{docId}
+//
+// Convention: request.auth.uid == merchantId (1 merchant == 1 owner
+// account for Sprint 1 — staff sub-accounts arrive in a later sprint).
+// ============================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(merchantId) {
+      return isSignedIn() && request.auth.uid == merchantId;
+    }
+
+    function isNonEmptyString(v) {
+      return v is string && v.size() > 0 && v.size() <= 500;
+    }
+
+    // ---------- merchants/{merchantId} ----------
+    match /merchants/{merchantId} {
+      allow read: if isOwner(merchantId);
+      allow create: if isOwner(merchantId)
+                    && request.resource.data.keys().hasAll(['ownerUid', 'shopName', 'createdAt'])
+                    && request.resource.data.ownerUid == request.auth.uid
+                    && isNonEmptyString(request.resource.data.shopName);
+      allow update: if isOwner(merchantId)
+                    && request.resource.data.ownerUid == resource.data.ownerUid;
+      allow delete: if false;
+
+      // -------- inventory --------
+      match /inventory/{itemId} {
+        allow read: if isOwner(merchantId);
+        allow create, update: if isOwner(merchantId)
+                              && isNonEmptyString(request.resource.data.name)
+                              && request.resource.data.price is number
+                              && request.resource.data.price >= 0
+                              && request.resource.data.costPrice is number
+                              && request.resource.data.costPrice >= 0
+                              && request.resource.data.quantity is map;
+        allow delete: if isOwner(merchantId);
+      }
+
+      // -------- customers --------
+      // `phoneEncrypted` must be AES-256 ciphertext; plaintext `phone` is never allowed.
+      match /customers/{customerId} {
+        allow read: if isOwner(merchantId);
+        allow create, update: if isOwner(merchantId)
+                              && !('phone' in request.resource.data)
+                              && isNonEmptyString(request.resource.data.phoneEncrypted)
+                              && isNonEmptyString(request.resource.data.name);
+        allow delete: if isOwner(merchantId);
+
+        match /messages/{messageId} {
+          allow read: if isOwner(merchantId);
+          allow create: if isOwner(merchantId)
+                        && isNonEmptyString(request.resource.data.body)
+                        && request.resource.data.sender in ['merchant', 'customer', 'agent'];
+          // Merchants can override AI replies by updating `body`.
+          allow update: if isOwner(merchantId)
+                        && request.resource.data.sender == resource.data.sender;
+          allow delete: if isOwner(merchantId);
+        }
+      }
+
+      // -------- ledger --------
+      // `upiRefEncrypted` must be AES-256 ciphertext; plaintext `upiRef` is never allowed.
+      match /ledger/{entryId} {
+        allow read: if isOwner(merchantId);
+        allow create: if isOwner(merchantId)
+                      && request.resource.data.type in ['sale', 'expense', 'refund']
+                      && request.resource.data.amount is number
+                      && request.resource.data.amount >= 0
+                      && !('upiRef' in request.resource.data);
+        // Ledger entries are append-only: no updates, no deletes.
+        allow update, delete: if false;
+      }
+
+      // -------- settings --------
+      match /settings/{docId} {
+        allow read, write: if isOwner(merchantId);
+      }
+    }
+
+    // Explicit default-deny for anything not matched above.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

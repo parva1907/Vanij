@@ -1,0 +1,35 @@
+rules_version = '2';
+
+// ============================================================
+// Vanij — Cloud Storage security rules
+//
+// Structure: merchants/{merchantId}/inventory/{itemId}/{filename}
+// Only the owning merchant can read/write. Images only; <= 5 MB.
+// ============================================================
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isOwner(merchantId) {
+      return request.auth != null && request.auth.uid == merchantId;
+    }
+
+    function isImage() {
+      return request.resource != null
+          && request.resource.contentType.matches('image/.*');
+    }
+
+    function isUnderSizeLimit() {
+      return request.resource != null
+          && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    match /merchants/{merchantId}/{allPaths=**} {
+      allow read: if isOwner(merchantId);
+      allow write: if isOwner(merchantId) && isImage() && isUnderSizeLimit();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
