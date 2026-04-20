@@ -323,7 +323,7 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  for (final c in kInventoryColors)
+                  for (final c in <String>{...kInventoryColors, ..._colors})
                     FilterChip(
                       label: Text(c),
                       selected: _colors.contains(c),
