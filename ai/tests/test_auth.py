@@ -124,3 +124,22 @@ def test_verify_google_id_token_swallows_malformed_error(settings_override):
         side_effect=ValueError("bad token"),
     ):
         assert _verify_google_id_token("any-token") is None
+
+
+def test_verify_google_id_token_swallows_connection_error(settings_override):
+    """``requests.exceptions.ConnectionError`` (the underlying JWKS HTTP
+    call failing) is not a ``GoogleAuthError`` and not a ``ValueError``,
+    but must still fall through to the Firebase verifier.
+    """
+    settings_override.agent_function_sa_email = "cf@vanij.iam"
+
+    from app.auth import _verify_google_id_token
+
+    class _FakeConnErr(OSError):
+        pass
+
+    with patch(
+        "google.oauth2.id_token.verify_oauth2_token",
+        side_effect=_FakeConnErr("connection refused"),
+    ):
+        assert _verify_google_id_token("any-token") is None

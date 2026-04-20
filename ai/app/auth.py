@@ -211,20 +211,19 @@ def _verify_google_id_token(token: str) -> dict[str, object] | None:
 
     audience = settings.agent_audience or None
     try:
-        from google.auth import exceptions as ga_exceptions
-    except Exception:  # pragma: no cover — dep missing in dev shells
-        log.warning("google-auth.exceptions not importable; skipping SA token verify")
-        return None
-    try:
         claims: dict[str, object] = ga_id_token.verify_oauth2_token(
             token,
             ga_requests.Request(),
             audience=audience,
         )
-    except (ValueError, ga_exceptions.GoogleAuthError):
-        # ``ValueError`` / ``MalformedError`` cover token-format failures;
-        # ``TransportError`` covers Google's JWKS fetch going down. Both
-        # should fall through to the Firebase verifier rather than 500.
+    except Exception as err:
+        # Any failure — malformed token, wrong audience, JWKS fetch
+        # transport error, unexpected SDK bug — must fall through to
+        # the Firebase verifier instead of 500-ing the request.
+        # ``/v1/agent/draft`` also serves Firebase-authenticated
+        # merchants, so a transient Google auth outage mustn't block
+        # them. Downgraded to warning — details live in the exception.
+        log.warning("SA token verify failed (%s); falling back to Firebase", type(err).__name__)
         return None
 
     email = claims.get("email")
