@@ -32,13 +32,15 @@ vanij/
 ## Sprint plan
 
 1. **Sprint 1** ✅ Firebase Auth + Firestore rules + folder structure
-2. **Sprint 2** ⏳ Inventory CRUD (no AI yet) + image upload
-3. **Sprint 3** ⏳ Python FastAPI skeleton + auth middleware + health check
-4. **Sprint 4** ⏳ Vision service + TagConfirmScreen
-5. **Sprint 5** ⏳ Finance module (ledger + UPI log)
-6. **Sprint 6** ⏳ CRM chat UI (no agent yet)
-7. **Sprint 7** ⏳ LLM agent + Cloud Function trigger
-8. **Sprint 8** ⏳ CI/CD + gitleaks + pre-commit hooks + APK optimization
+2. **Sprint 2** ✅ Inventory CRUD (no AI yet) + image upload
+3. **Sprint 3** ✅ Python FastAPI skeleton + auth middleware + health check
+4. **Sprint 4** ✅ Vision service + TagConfirmScreen
+5. **Sprint 5** ✅ Finance module (ledger + UPI log)
+6. **Sprint 6** ✅ CRM chat UI (no agent yet)
+7. **Sprint 7** ✅ LLM agent + Cloud Function trigger
+8. **Sprint 8** ✅ Telemetry (Crashlytics + Analytics), structured logging, release signing, full-history gitleaks
+
+See [`docs/SPRINTS.md`](docs/SPRINTS.md) for the per-sprint delivery log and [`docs/RELEASE.md`](docs/RELEASE.md) for the production-release checklist.
 
 ## Security guarantees
 

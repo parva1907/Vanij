@@ -20,6 +20,14 @@
       "collectionGroup": "inventory",
       "queryScope": "COLLECTION",
       "fields": [
+        { "fieldPath": "lowStock", "order": "DESCENDING" },
+        { "fieldPath": "updatedAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "inventory",
+      "queryScope": "COLLECTION",
+      "fields": [
         { "fieldPath": "color", "arrayConfig": "CONTAINS" },
         { "fieldPath": "updatedAt", "order": "DESCENDING" }
       ]

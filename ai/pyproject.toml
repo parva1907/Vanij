@@ -19,6 +19,11 @@ dependencies = [
     # Pinned here rather than relying on fastapi[standard] because we
     # want the Cloud Run runtime image to be as small as possible.
     "python-multipart>=0.0.9",
+    # Sprint 7: LLM agent via Claude Sonnet.
+    "anthropic>=0.34.0",
+    # Sprint 7: verify Google-signed ID tokens from the Cloud Function
+    # that bridges Firestore messages to the FastAPI agent.
+    "google-auth>=2.32.0",
 ]
 
 [project.optional-dependencies]

@@ -370,4 +370,10 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get crmCustomerDecryptFailed =>
       'इस डिवाइस पर फ़ोन डिक्रिप्ट नहीं हो सका।';
+
+  @override
+  String get crmAgentDraftBadge => 'ड्राफ़्ट';
+
+  @override
+  String get crmAgentDraftReviewHint => 'भेजने से पहले जाँच लें';
 }

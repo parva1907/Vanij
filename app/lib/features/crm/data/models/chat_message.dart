@@ -26,6 +26,7 @@ class ChatMessage {
     required this.body,
     required this.createdAt,
     this.edited = false,
+    this.isDraft = false,
   });
 
   final String id;
@@ -37,13 +38,20 @@ class ChatMessage {
   /// (same rule-preserved `sender`, new `body`).
   final bool edited;
 
-  ChatMessage copyWith({String? body, bool? edited}) {
+  /// True when an agent-authored message was written by the Cloud
+  /// Function trigger and the merchant hasn't reviewed / edited it
+  /// yet. Surfaced in the UI as a subtle "Draft" badge so the
+  /// merchant knows to approve before treating it as sent.
+  final bool isDraft;
+
+  ChatMessage copyWith({String? body, bool? edited, bool? isDraft}) {
     return ChatMessage(
       id: id,
       sender: sender,
       body: body ?? this.body,
       createdAt: createdAt,
       edited: edited ?? this.edited,
+      isDraft: isDraft ?? this.isDraft,
     );
   }
 
@@ -55,6 +63,7 @@ class ChatMessage {
       body: (data['body'] as String?) ?? '',
       createdAt: _toDate(data['createdAt']),
       edited: (data['edited'] as bool?) ?? false,
+      isDraft: (data['isDraft'] as bool?) ?? false,
     );
   }
 
@@ -69,13 +78,16 @@ class ChatMessage {
   }
 
   /// Firestore payload for `update`. Rules enforce that `sender` is
-  /// not changed, so we re-send the original value unchanged.
+  /// not changed, so we re-send the original value unchanged. A
+  /// merchant-initiated edit of an agent draft also clears
+  /// `isDraft` — the act of editing implies approval.
   Map<String, dynamic> toUpdatePayload() {
     return <String, dynamic>{
       'sender': sender.wireName,
       'body': body,
       'edited': true,
       'editedAt': FieldValue.serverTimestamp(),
+      'isDraft': false,
     };
   }
 }

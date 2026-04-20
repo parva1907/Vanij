@@ -63,9 +63,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history — gitleaks' git-mode scan needs every commit so
+          # a secret rotated in a follow-up commit doesn't stay hidden.
+          fetch-depth: 0
       - name: Install gitleaks
         run: |
           curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz \
             | tar -xz -C /usr/local/bin gitleaks
-      - name: Scan working tree (no-git mode — Sprint 8 will scan history)
-        run: gitleaks detect --no-git --config .gitleaks.toml --redact --verbose
+      - name: Scan full git history
+        # Sprint 8: upgraded from `--no-git` to the default git-mode scan
+        # so we cover every commit on the branch, not just the working
+        # tree. `.gitleaks.toml` allow-lists the public Firebase Android
+        # API key and the ledger/phone keystore namespace strings.
+        run: gitleaks detect --config .gitleaks.toml --redact --verbose
