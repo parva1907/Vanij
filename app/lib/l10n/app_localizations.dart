@@ -799,6 +799,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Phone could not be decrypted on this device.'**
   String get crmCustomerDecryptFailed;
+
+  /// Badge on an AI-generated agent reply awaiting merchant review.
+  ///
+  /// In en, this message translates to:
+  /// **'DRAFT'**
+  String get crmAgentDraftBadge;
+
+  /// Sublabel reminding the merchant to review an agent draft before sending.
+  ///
+  /// In en, this message translates to:
+  /// **'review before sending'**
+  String get crmAgentDraftReviewHint;
 }
 
 class _AppLocalizationsDelegate

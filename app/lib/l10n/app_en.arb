@@ -137,5 +137,9 @@
   "crmMessageEditSave": "Save",
   "crmMessageEditedBadge": "edited",
   "crmMessageDelete": "Delete",
-  "crmCustomerDecryptFailed": "Phone could not be decrypted on this device."
+  "crmCustomerDecryptFailed": "Phone could not be decrypted on this device.",
+  "crmAgentDraftBadge": "DRAFT",
+  "@crmAgentDraftBadge": {"description": "Badge on an AI-generated agent reply awaiting merchant review."},
+  "crmAgentDraftReviewHint": "review before sending",
+  "@crmAgentDraftReviewHint": {"description": "Sublabel reminding the merchant to review an agent draft before sending."}
 }

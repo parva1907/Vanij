@@ -67,6 +67,35 @@ class Settings(BaseSettings):
     # ------------------------------------------------------------------
     claude_api_key: str = ""
 
+    # ------------------------------------------------------------------
+    # LLM agent (Sprint 7) — ``/v1/agent/draft`` + Cloud Function bridge.
+    # ------------------------------------------------------------------
+    # Anthropic API key. Loaded from Google Cloud Secret Manager at
+    # deploy time. Empty in unit tests — the Anthropic client is
+    # monkey-patched out so no network call happens.
+    anthropic_api_key: str = ""
+    # Claude model ID. Pinned to the latest Sonnet — Sprint 8 may bump.
+    anthropic_model: str = "claude-sonnet-4-5-20250929"
+    # Hard ceiling on the length of the generated reply. Aligns with
+    # the "max 3 short sentences" prompt contract.
+    agent_max_reply_chars: int = 600
+    # Inventory context window sent to the model. Kept small so the
+    # prompt stays under a few hundred input tokens — we prioritise
+    # low-stock items and the most-recently-updated items.
+    agent_max_inventory_items: int = 20
+    # Per-merchant rate limit on the agent endpoint. A malicious customer
+    # blasting messages at the chat must not be able to burn Anthropic
+    # credits — SlowAPI keys on the caller's merchant uid.
+    agent_rate_limit: str = "20/minute;200/hour"
+    # Email of the Cloud Function service account that's allowed to call
+    # the agent endpoint with a Google-signed ID token. Empty disables
+    # service-account auth entirely (Firebase tokens still accepted).
+    agent_function_sa_email: str = ""
+    # Expected ``aud`` claim in a Google-signed ID token. Conventionally
+    # the Cloud Run URL of this FastAPI service. Empty means "skip the
+    # audience check" — safe only in tests.
+    agent_audience: str = ""
+
     @property
     def allowed_origins_list(self) -> list[str]:
         return [o.strip() for o in self.allowed_origins.split(",") if o.strip()]

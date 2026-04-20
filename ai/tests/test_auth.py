@@ -92,3 +92,54 @@ def test_v1_rejects_empty_token(client, scheme_token):
         headers={"Authorization": f"Bearer {scheme_token}"},
     )
     assert res.status_code in (401, 403)
+
+
+def test_verify_google_id_token_swallows_transport_error(settings_override):
+    """``TransportError`` (Google JWKS fetch failure) is not a ``ValueError``,
+    so catching only ``ValueError`` would propagate it and 500 the request
+    instead of falling through to Firebase verification.
+    """
+    settings_override.agent_function_sa_email = "cf@vanij.iam"
+    from google.auth import exceptions as ga_exceptions
+
+    from app.auth import _verify_google_id_token
+
+    with patch(
+        "google.oauth2.id_token.verify_oauth2_token",
+        side_effect=ga_exceptions.TransportError("jwks unreachable"),
+    ):
+        assert _verify_google_id_token("any-token") is None
+
+
+def test_verify_google_id_token_swallows_malformed_error(settings_override):
+    """``ValueError`` (token shape wrong) still falls through, and the
+    existing ``google.auth.exceptions.MalformedError`` is a subclass of
+    ``ValueError`` so it's covered by the same branch."""
+    settings_override.agent_function_sa_email = "cf@vanij.iam"
+
+    from app.auth import _verify_google_id_token
+
+    with patch(
+        "google.oauth2.id_token.verify_oauth2_token",
+        side_effect=ValueError("bad token"),
+    ):
+        assert _verify_google_id_token("any-token") is None
+
+
+def test_verify_google_id_token_swallows_connection_error(settings_override):
+    """``requests.exceptions.ConnectionError`` (the underlying JWKS HTTP
+    call failing) is not a ``GoogleAuthError`` and not a ``ValueError``,
+    but must still fall through to the Firebase verifier.
+    """
+    settings_override.agent_function_sa_email = "cf@vanij.iam"
+
+    from app.auth import _verify_google_id_token
+
+    class _FakeConnErr(OSError):
+        pass
+
+    with patch(
+        "google.oauth2.id_token.verify_oauth2_token",
+        side_effect=_FakeConnErr("connection refused"),
+    ):
+        assert _verify_google_id_token("any-token") is None

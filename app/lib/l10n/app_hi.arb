@@ -133,5 +133,7 @@
   "crmMessageEditSave": "सहेजें",
   "crmMessageEditedBadge": "बदला गया",
   "crmMessageDelete": "हटाएँ",
-  "crmCustomerDecryptFailed": "इस डिवाइस पर फ़ोन डिक्रिप्ट नहीं हो सका।"
+  "crmCustomerDecryptFailed": "इस डिवाइस पर फ़ोन डिक्रिप्ट नहीं हो सका।",
+  "crmAgentDraftBadge": "ड्राफ़्ट",
+  "crmAgentDraftReviewHint": "भेजने से पहले जाँच लें"
 }
