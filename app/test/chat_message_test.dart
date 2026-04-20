@@ -80,19 +80,21 @@ void main() {
       expect(m.isDraft, true);
     });
 
-    test('toUpdatePayload clears isDraft when merchant edits an agent draft',
-        () {
-      final m = ChatMessage(
-        id: 'mid',
-        sender: ChatSender.agent,
-        body: 'Draft reply',
-        createdAt: DateTime(2024, 1, 1),
-        isDraft: true,
-      );
-      final payload = m
-          .copyWith(body: 'Merchant-approved reply', edited: true)
-          .toUpdatePayload();
-      expect(payload['isDraft'], false);
-    });
+    test(
+      'toUpdatePayload clears isDraft when merchant edits an agent draft',
+      () {
+        final m = ChatMessage(
+          id: 'mid',
+          sender: ChatSender.agent,
+          body: 'Draft reply',
+          createdAt: DateTime(2024, 1, 1),
+          isDraft: true,
+        );
+        final payload = m
+            .copyWith(body: 'Merchant-approved reply', edited: true)
+            .toUpdatePayload();
+        expect(payload['isDraft'], false);
+      },
+    );
   });
 }
