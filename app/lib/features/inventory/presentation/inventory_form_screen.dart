@@ -319,19 +319,32 @@ class _InventoryFormScreenState extends ConsumerState<InventoryFormScreen> {
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final c in kInventoryColors)
-                    FilterChip(
-                      label: Text(c),
-                      selected: _colors.contains(c),
-                      onSelected: (v) => setState(
-                        () => v ? _colors.add(c) : _colors.remove(c),
-                      ),
-                    ),
-                ],
+              Builder(
+                builder: (context) {
+                  // Union of the canonical palette + any colours already
+                  // selected (e.g. seeded from the AI tagger, which may
+                  // return values outside `kInventoryColors` like Maroon
+                  // or Navy). Without this, non-canonical selections are
+                  // invisible in the form yet still written to Firestore.
+                  final palette = <String>{
+                    ...kInventoryColors,
+                    ..._colors,
+                  }.toList();
+                  return Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final c in palette)
+                        FilterChip(
+                          label: Text(c),
+                          selected: _colors.contains(c),
+                          onSelected: (v) => setState(
+                            () => v ? _colors.add(c) : _colors.remove(c),
+                          ),
+                        ),
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 20),
               _SizeQuantityEditor(
