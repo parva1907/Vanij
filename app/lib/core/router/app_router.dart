@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,7 @@ import '../../features/finance/presentation/finance_screen.dart';
 import '../../features/finance/presentation/ledger_list_screen.dart';
 import '../../features/inventory/presentation/inventory_form_screen.dart';
 import '../../features/inventory/presentation/inventory_screen.dart';
+import '../../features/inventory/presentation/tag_confirm_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/shell/presentation/main_shell.dart';
 
@@ -26,6 +29,7 @@ class VanijRoutes {
   static const signUp = '/sign-up';
   static const inventory = '/inventory';
   static const inventoryNew = '/inventory/new';
+  static const inventoryTagConfirm = '/inventory/tag-confirm';
   static const customers = '/customers';
   static const customersNew = '/customers/new';
   static String customerChat(String id) => '/customers/$id';
@@ -81,7 +85,26 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: 'new',
                 parentNavigatorKey: _rootNavKey,
-                builder: (context, state) => const InventoryFormScreen(),
+                builder: (context, state) {
+                  final extra = state.extra;
+                  return InventoryFormScreen(
+                    initialSeed: extra is InventoryDraftSeed ? extra : null,
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'tag-confirm',
+                parentNavigatorKey: _rootNavKey,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is! File) {
+                    // Defensive: tag-confirm without a picked image is
+                    // unreachable through the UI; fall back to the plain
+                    // form so the merchant can still add an item.
+                    return const InventoryFormScreen();
+                  }
+                  return TagConfirmScreen(imageFile: extra);
+                },
               ),
               GoRoute(
                 path: ':id',

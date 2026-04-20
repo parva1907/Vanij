@@ -41,7 +41,7 @@ jobs:
       - run: npm run build
 
   ai:
-    name: AI backend — ruff
+    name: AI backend — ruff + pytest
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -51,9 +51,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install ruff
+          cache: pip
+          cache-dependency-path: ai/pyproject.toml
+      - run: pip install -e ".[dev]"
       - run: ruff check .
       - run: ruff format --check .
+      - run: pytest
 
   gitleaks:
     name: Gitleaks — secret scan

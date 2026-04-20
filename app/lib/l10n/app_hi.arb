@@ -54,6 +54,16 @@
   "inventoryValidationNeedAtLeastOneSize": "कम से कम एक साइज़ जोड़ें।",
   "inventoryValidationImageRequired": "फ़ोटो जोड़ें।",
   "inventoryUploadingImage": "फ़ोटो अपलोड हो रही है…",
+  "inventoryAddWithAi": "AI से स्कैन करें",
+
+  "tagConfirmTitle": "टैग की पुष्टि करें",
+  "tagConfirmLoading": "AI आपकी फ़ोटो देख रहा है…",
+  "tagConfirmHeadline": "AI के सुझाव देखें",
+  "tagConfirmSubheadline": "जब तक आप 'आगे बढ़ें' नहीं दबाते, कुछ भी सहेजा नहीं जाएगा। जो गलत लगे वह बदल दें।",
+  "tagConfirmContinue": "आगे बढ़ें",
+  "tagConfirmSkip": "AI सुझाव छोड़ें",
+  "tagConfirmAiSuggested": "AI: {value}",
+
   "commonCancel": "रद्द करें",
   "commonRetry": "फिर कोशिश करें",
   "commonSaving": "सहेज रहे हैं…",
