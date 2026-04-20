@@ -20,6 +20,11 @@ dependencies:
   firebase_auth: ^6.4.0
   cloud_firestore: ^6.3.0
   firebase_storage: ^13.3.0
+  # Sprint 8 — fatal-error crash reporting + minimal PII-free analytics.
+  # Analytics events are enumerated in app/lib/core/analytics/events.dart
+  # and never carry customer content.
+  firebase_crashlytics: ^5.0.0
+  firebase_analytics: ^12.0.0
   google_sign_in: ^7.2.0
 
   cached_network_image: ^3.4.1

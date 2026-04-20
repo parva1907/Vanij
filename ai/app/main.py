@@ -18,16 +18,15 @@ from slowapi.errors import RateLimitExceeded
 
 from app.auth import init_firebase_admin
 from app.config import settings
+from app.logging_setup import configure_logging
+from app.middleware import RequestIdMiddleware
 from app.routers import agent as agent_router
 from app.routers import health as health_router
 from app.routers import v1 as v1_router
 from app.routers import vision as vision_router
 from app.vision.tagger import load_tagger
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(name)s - %(message)s",
-)
+configure_logging(level=logging.INFO)
 log = logging.getLogger("vanij")
 
 
@@ -62,8 +61,12 @@ app.add_middleware(
     allow_origins=settings.allowed_origins_list,
     allow_credentials=True,
     allow_methods=["GET", "POST"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+    expose_headers=["X-Request-ID"],
 )
+# Install request-id / structured-log middleware last so it sees the
+# outermost request + response (including the CORS-wrapped response).
+app.add_middleware(RequestIdMiddleware)
 
 app.include_router(health_router.router)
 app.include_router(v1_router.router)

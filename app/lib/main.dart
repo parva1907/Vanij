@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
 import 'common/config/app_config.dart';
+import 'core/telemetry/crashlytics_bootstrap.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -14,5 +15,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const ProviderScope(child: VanijApp()));
+  // Sprint 8: wire Crashlytics before runApp so the global error hooks
+  // catch anything that blows up during `ProviderScope` bootstrap.
+  // `installCrashlytics` wraps `runApp` in `runZonedGuarded` internally.
+  await installCrashlytics(
+    () => runApp(const ProviderScope(child: VanijApp())),
+  );
 }

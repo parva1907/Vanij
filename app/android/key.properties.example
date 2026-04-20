@@ -1,0 +1,23 @@
+# Production upload-keystore config for Vanij Android release builds.
+#
+# Copy this file to `app/android/key.properties` (NEVER commit that
+# copy — it's in .gitignore). Paths are resolved from `android/`.
+#
+# Generate the keystore once with:
+#
+#   keytool -genkey -v \
+#     -keystore ~/vanij-upload.jks \
+#     -keyalg RSA -keysize 2048 -validity 10000 \
+#     -alias vanij-upload
+#
+# Then point `storeFile` below at it (an absolute path outside this repo
+# is strongly preferred — never check the .jks into Git).
+#
+# Rotation: Google Play supports uploading a new upload key via the
+# Play Console → App integrity → App signing → Request upload key
+# reset. Do NOT rotate the app-signing key itself (managed by Play).
+
+storeFile=/absolute/path/to/vanij-upload.jks
+storePassword=CHANGE_ME
+keyAlias=vanij-upload
+keyPassword=CHANGE_ME
