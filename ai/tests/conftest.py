@@ -36,18 +36,35 @@ def client() -> Iterator[Any]:
             yield c
 
 
+_SNAPSHOT_FIELDS = (
+    "auth_disabled",
+    "environment",
+    "default_rate_limit",
+    "max_image_bytes",
+    "vision_backend",
+    # Sprint 7 — agent
+    "anthropic_api_key",
+    "anthropic_model",
+    "agent_max_reply_chars",
+    "agent_max_inventory_items",
+    "agent_rate_limit",
+    "agent_function_sa_email",
+    "agent_audience",
+)
+
+
 @pytest.fixture
 def settings_override() -> Iterator[Any]:
-    """Mutate ``app.config.settings`` for the duration of a test."""
+    """Mutate ``app.config.settings`` for the duration of a test.
+
+    Every field a test might toggle must be in ``_SNAPSHOT_FIELDS``
+    so its pre-test value is restored on teardown. Missing fields
+    would otherwise leak between tests and break order-independent
+    execution (e.g. ``pytest-randomly``).
+    """
     from app.config import settings
 
-    snapshot = {
-        "auth_disabled": settings.auth_disabled,
-        "environment": settings.environment,
-        "default_rate_limit": settings.default_rate_limit,
-        "max_image_bytes": settings.max_image_bytes,
-        "vision_backend": settings.vision_backend,
-    }
+    snapshot = {k: getattr(settings, k) for k in _SNAPSHOT_FIELDS}
     yield settings
     for k, v in snapshot.items():
         setattr(settings, k, v)

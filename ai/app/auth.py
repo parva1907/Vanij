@@ -23,6 +23,7 @@ Security notes:
 
 from __future__ import annotations
 
+import json
 import logging
 from dataclasses import dataclass
 
@@ -34,6 +35,36 @@ from firebase_admin import auth as fb_auth
 from app.config import settings
 
 log = logging.getLogger("vanij.auth")
+
+
+async def _merchant_rate_limit_uid(request: Request, fallback: str) -> str:
+    """Peek the JSON body and return the ``merchantId`` it declares.
+
+    Service-account callers (our Cloud Function) pass different
+    ``merchantId`` values on every request, so the rate-limit bucket
+    has to key on that field — not on the SA's own email, which
+    would collapse every merchant into a single shared quota.
+
+    The body bytes are cached on the ``Request`` object by Starlette,
+    so FastAPI's Pydantic body parser downstream still sees the same
+    JSON we read here. Failure modes (non-JSON, empty body, missing
+    field) fall back to ``fallback`` so the rate limiter degrades
+    safely rather than raising before authz.
+    """
+    try:
+        raw = await request.body()
+        if not raw:
+            return fallback
+        data = json.loads(raw.decode("utf-8"))
+    except (ValueError, UnicodeDecodeError):
+        return fallback
+    if not isinstance(data, dict):
+        return fallback
+    candidate = data.get("merchantId") or data.get("merchant_id")
+    if isinstance(candidate, str) and candidate:
+        return candidate
+    return fallback
+
 
 _bearer = HTTPBearer(auto_error=False, description="Firebase ID token")
 
@@ -236,7 +267,11 @@ async def require_agent_caller(
             uid=str(sa_claims.get("email", "cloud-function")),
             email=str(sa_claims.get("email")) if sa_claims.get("email") else None,
         )
-        request.state.uid = caller.uid
+        # Rate-limit bucket must be per-merchant, not per-SA. Peek the
+        # body to pull ``merchantId`` and stash it on ``request.state``.
+        # Starlette caches the bytes internally, so FastAPI's body
+        # parser downstream still sees the same JSON.
+        request.state.uid = await _merchant_rate_limit_uid(request, caller.uid)
         return caller
 
     # Fall back to Firebase user token.

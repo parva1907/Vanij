@@ -326,6 +326,70 @@ def test_draft_service_account_trusts_body_merchant_id(
     assert agent_client.fetcher.calls[-1][0] == "any-merchant-uid-the-function-picked"
 
 
+def test_sa_rate_limit_keys_on_body_merchant_id_not_sa_email(
+    settings_override: Any,
+) -> None:
+    """Regression: the rate-limit bucket for SA callers must key on the
+    ``merchantId`` in the body, not the SA email. Otherwise every merchant
+    shares a single quota and one busy merchant can starve everyone else."""
+    settings_override.auth_disabled = False
+    settings_override.environment = "test"
+    settings_override.agent_function_sa_email = "cf@vanij.iam"
+    # Very tight cap so a second call from the same bucket would 429.
+    settings_override.agent_rate_limit = "1/minute"
+
+    fake_claims = {"email": "cf@vanij.iam", "email_verified": True}
+
+    with (
+        patch("app.auth.init_firebase_admin"),
+        patch("app.auth._verify_google_id_token", return_value=fake_claims),
+    ):
+        from app.main import app
+
+        fetcher = StubInventoryFetcher()
+        llm = StubLlmClient()
+        app.state.inventory_fetcher = fetcher
+        app.state.llm_client = llm
+        try:
+            with TestClient(app) as c:
+                r1 = c.post(
+                    "/v1/agent/draft",
+                    headers={"Authorization": "Bearer sa-token"},
+                    json={
+                        "merchantId": "merchant-A",
+                        "customerId": "c1",
+                        "message": "hi",
+                    },
+                )
+                r2 = c.post(
+                    "/v1/agent/draft",
+                    headers={"Authorization": "Bearer sa-token"},
+                    json={
+                        "merchantId": "merchant-B",
+                        "customerId": "c1",
+                        "message": "hi",
+                    },
+                )
+                # Same merchant as r1 → should exhaust merchant-A's bucket.
+                r3 = c.post(
+                    "/v1/agent/draft",
+                    headers={"Authorization": "Bearer sa-token"},
+                    json={
+                        "merchantId": "merchant-A",
+                        "customerId": "c2",
+                        "message": "hi",
+                    },
+                )
+        finally:
+            app.state.inventory_fetcher = None
+            app.state.llm_client = None
+
+    assert r1.status_code == 200, r1.text
+    # A different merchant must NOT be blocked by merchant-A's usage.
+    assert r2.status_code == 200, r2.text
+    assert r3.status_code == 429, r3.text
+
+
 # ---------------------------------------------------------------------------
 # Read-only contract — smoke check: the fetcher interface has no write
 # shape. If someone adds a write method to ``InventoryFetcher``, this
