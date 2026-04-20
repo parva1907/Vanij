@@ -290,6 +290,7 @@ class _MessageBubble extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final isMerchant = message.sender == ChatSender.merchant;
     final isAgent = message.sender == ChatSender.agent;
+    final isDraft = isAgent && message.isDraft;
     final bubbleColor = isMerchant
         ? const Color(0xFFDCF8C6) // WhatsApp green tint
         : isAgent
@@ -349,18 +350,30 @@ class _MessageBubble extends StatelessWidget {
             decoration: BoxDecoration(
               color: bubbleColor,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: VanijColors.divider),
+              border: Border.all(
+                color: isDraft ? VanijColors.accent : VanijColors.divider,
+                width: isDraft ? 1.2 : 1.0,
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  senderLabel,
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: VanijColors.primary,
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      senderLabel,
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: VanijColors.primary,
+                      ),
+                    ),
+                    if (isDraft) ...[
+                      const SizedBox(width: 6),
+                      _DraftBadge(label: l.crmAgentDraftBadge),
+                    ],
+                  ],
                 ),
                 const SizedBox(height: 2),
                 Text(message.body),
@@ -385,11 +398,48 @@ class _MessageBubble extends StatelessWidget {
                         ),
                       ),
                     ],
+                    if (isDraft) ...[
+                      const SizedBox(width: 4),
+                      Text(
+                        '· ${l.crmAgentDraftReviewHint}',
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: VanijColors.textSecondary,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DraftBadge extends StatelessWidget {
+  const _DraftBadge({required this.label});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+      decoration: BoxDecoration(
+        color: VanijColors.accent.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: VanijColors.accent, width: 0.8),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontSize: 9,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.4,
+          color: VanijColors.accent,
         ),
       ),
     );

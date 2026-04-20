@@ -65,6 +65,34 @@ void main() {
       final m = ChatMessage.fromDoc(doc);
       expect(m.sender, ChatSender.customer);
       expect(m.edited, false);
+      expect(m.isDraft, false);
+    });
+
+    test('fromDoc parses isDraft on agent messages', () {
+      final doc = _FakeDoc('m2', {
+        'sender': 'agent',
+        'body': 'Hello, ji!',
+        'createdAt': Timestamp.fromDate(DateTime(2024, 1, 1)),
+        'isDraft': true,
+      });
+      final m = ChatMessage.fromDoc(doc);
+      expect(m.sender, ChatSender.agent);
+      expect(m.isDraft, true);
+    });
+
+    test('toUpdatePayload clears isDraft when merchant edits an agent draft',
+        () {
+      final m = ChatMessage(
+        id: 'mid',
+        sender: ChatSender.agent,
+        body: 'Draft reply',
+        createdAt: DateTime(2024, 1, 1),
+        isDraft: true,
+      );
+      final payload = m
+          .copyWith(body: 'Merchant-approved reply', edited: true)
+          .toUpdatePayload();
+      expect(payload['isDraft'], false);
     });
   });
 }

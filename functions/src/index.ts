@@ -1,5 +1,5 @@
 // ============================================================
-// Vanij — Cloud Functions entrypoint (Sprint 1 skeleton).
+// Vanij — Cloud Functions entrypoint.
 //
 // We keep cold start under 2s by:
 //   • lazy-loading heavy modules (e.g. the AI agent) inside handlers only
@@ -23,3 +23,6 @@ export const health = onRequest(
     res.status(200).json({ok: true, service: "vanij-functions"});
   },
 );
+
+// Sprint 7 — LLM agent trigger.
+export {onCustomerMessageCreated} from "./agentTrigger";

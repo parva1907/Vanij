@@ -18,6 +18,7 @@ from slowapi.errors import RateLimitExceeded
 
 from app.auth import init_firebase_admin
 from app.config import settings
+from app.routers import agent as agent_router
 from app.routers import health as health_router
 from app.routers import v1 as v1_router
 from app.routers import vision as vision_router
@@ -67,3 +68,4 @@ app.add_middleware(
 app.include_router(health_router.router)
 app.include_router(v1_router.router)
 app.include_router(vision_router.router)
+app.include_router(agent_router.router)
